@@ -1,0 +1,18 @@
+{% load i18n %}
+{% load staticfiles %}
+{% load dcterms_dokumenty %}
+
+{# item: instance AccreditationDocument #}
+{# attachments: instance AccreditationDocumentAttachment #}
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4><i class="fa fa-fw fa-download"></i> {% trans "Stáhnout dokumenty" %}</h4>
+        </div>
+        <div class="panel-body">
+            <ul class="stahnout_dokumenty">
+                            <li><a href="{% url 'dcterms:download' bitstream_id=documents.id|id_from_path %}">{{ documents.filename }}</a></li>
+            </ul>
+        </div>
+    </div>

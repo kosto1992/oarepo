@@ -1,0 +1,47 @@
+{% extends "dcterms/base.html" %}
+{% load i18n %}
+{% load l10n %}
+{% load dcterms_dokumenty %}
+
+{% block title %}OArepo - {{ item.title }} {% endblock %}
+
+
+{% block h1 %}
+    {{ item.title|rdf2lang }}
+{% endblock %}
+
+
+
+
+{% block inner_content %}
+    <div class="nazev_property">{% trans "Id" %}</div>
+    <div class="hodnota_property">
+        {{ item_id }}
+    </div>
+
+
+    <div class="nazev_property">{% trans "Author" %}</div>
+    <div class="hodnota_property">
+        {{ item.creator }}
+    </div>
+
+    <div class="nazev_property">{% trans "Abstract" %}</div>
+    <div class="hodnota_property">
+        {{ item.abstract }}
+    </div>
+
+    <div class="childrens">
+    {% for children in childrens %}
+        <div class="children">
+            <a href="{{ children.id|id_from_path }}">{{ children.title|rdf2lang }}</a>
+        </div>
+    {%  endfor %}
+    </div>
+
+{% endblock %}
+
+    {% block rightbox %}
+        {% if documents.filename != None %}
+            {% include "dcterms/fragments/stahovani.html" %}
+        {% endif %}
+    {% endblock %}
