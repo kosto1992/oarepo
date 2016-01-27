@@ -1,0 +1,27 @@
+{% extends "dcterms/base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+{% block title %}"OArepo" - úprava dokumentu{% endblock %}
+
+
+{% block h1 %}
+        OArepo - úprava dokumentu
+{% endblock %}
+
+{% block inner_content %}
+
+    <form method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        {% bootstrap_form form %}
+
+        <div>
+            <button type="submit" name="submit" class="btn btn-primary">Uložit</button>
+            <button type="submit" name="cancel" class="btn btn-default">Zpět</button>
+        </div>
+
+    </form>
+
+{% endblock %}

@@ -12,7 +12,7 @@
         </div>
         <div class="panel-body">
             <ul class="stahnout_dokumenty">
-                            <li><a href="{% url 'dcterms:download' bitstream_id=documents.id|id_from_path %}">{{ documents.filename }}</a></li>
+                            <li><a href="{% url 'dcterms:download' bitstream_id=document.id|id_from_path %}">{{ document.filename }}</a></li>
             </ul>
         </div>
     </div>

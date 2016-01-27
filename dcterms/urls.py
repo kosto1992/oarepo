@@ -2,7 +2,7 @@ from django.conf.urls import url, include, patterns
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView, UpdateView
 from fedoralink.models import FedoraObject
 from fedoralink.common_namespaces.dc import DCObject
 
@@ -52,6 +52,47 @@ class DCTermsDokumentCreate(CreateView):
 
         return ret
 
+class DCTermsEditView(UpdateView):
+    model = DCObject
+    fields = '__all__'
+    template_name = 'dcterms/edit.html'
+
+    prefix = None
+
+    def get_success_url(self):
+        created = self.object
+        return reverse('dcterms:index')
+
+    def get_queryset(self):
+        return self.model.objects.all()
+
+    def get_object(self, queryset=None):
+        pk = self.prefix + self.kwargs.get(self.pk_url_kwarg, None).replace("_","/")
+        self.kwargs[self.pk_url_kwarg]=pk
+        print(self.kwargs)
+        return super().get_object(queryset)
+
+
+
+class DCTermsDetailView(DetailView):
+    model = DCObject
+    prefix = None
+    template_name = "dcterms/detail.html"
+
+    # DCObject.all_indexed_fields()
+    # DCObject.
+
+    def get_queryset(self):
+        return self.model.objects.all()
+
+    def get_object(self, queryset=None):
+        pk = self.prefix + self.kwargs.get(self.pk_url_kwarg, None).replace("_","/")
+        self.kwargs[self.pk_url_kwarg]=pk
+        print(self.kwargs)
+        return super().get_object(queryset)
+
+    model = DCObject
+
 urlpatterns = [
     url(r'^', include(patterns('',
                                url(r'^$', dcterms.views.index, name="index"),
@@ -66,11 +107,13 @@ urlpatterns = [
                                ), name='pridani_dcterms_object'),
                                #     breadcrumb=_('Přidání akreditace')),
                                #
-                               url('^((?P<id>[0-9a-z_-]+))$', dcterms.views.detail, name="detail"),
+                               url('^((?P<pk>[0-9a-z_-]+))$', DCTermsDetailView.as_view(prefix = "test/"), name="detail"),
+                               # url('^((?P<id>[0-9a-z_-]+))$', dcterms.views.detail, name="detail"),
                                #     breadcrumb=_('dcterms:detail')),
                                #
                                url('^download/(?P<bitstream_id>[0-9a-z_-]+)$', dcterms.views.download, name="download"),
                                #     breadcrumb=_('dcterms:download')),
+                               url('^edit/((?P<pk>[0-9a-z_-]+))$', DCTermsEditView.as_view(prefix = "test/"), name="detail"),
 
                                ),namespace="dcterms"))
 ]

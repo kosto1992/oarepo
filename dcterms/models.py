@@ -10,7 +10,6 @@ from fedoralink.type_manager import FedoraTypeManager
 
 class DocumentAttachment(DCObject):
     indexed_fields = [
-        # TODO: add foreign key
         IndexedField('filename', EBUCORE.filename, stored=True, indexed=True,
                      type=BINARY, prefix='ebucore_filename_',
                      verbose_name=_('Soubor')),
