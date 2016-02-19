@@ -24,7 +24,7 @@ def index(req):
 #     #print(EBUCORE.filename)
 #     file = DocumentAttachment.objects.get(pk='test/' + id.replace('_', '/'))
 #
-#     return render(req, 'dcterms/detail.html', {
+#     return render(req, 'baseOArepo/detail.html', {
 #         'item' : doc,
 #         'item_id' : id,
 #         'childrens' : childrens,

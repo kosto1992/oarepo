@@ -1,0 +1,89 @@
+<html>
+{% load i18n %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+{% block head %}
+
+    <link href="{% static "baseOArepo/css/styles.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "baseOArepo/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+    <script src="{% static "baseOArepo/js/jquery-2.2.0.min.js" %}" type="text/javascript"></script>
+    <script src="{% static "baseOArepo/bootstrap/js/bootstrap.js" %}" type="text/javascript"></script>
+
+{% endblock %}
+
+{% block navigation %}
+    <nav class="navbar navbar-custom navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="flags pull-left col-md-3">
+                <div class="cl_item cl_link cl_flag navbar-text pull-right"><a class="cl_label" href="/en/start"><img
+                        alt="english flag"
+                        src="data:image/gif;base64,R0lGODlhEgANALMAAPv7+wAAPPsAAAUVh52dnfZgVXOQxU50qyhNp6Zxmb/I4qOx1/iPjVRuwXMQKdOi0CH5BAAAAAAALAAAAAASAA0AAARtkMhJKz3roK2cU0OIOIdkMIBiGEBRAE2zvIaELAzaAIIAM7SBzdB4vHi+FwgRkCgA0GgvGlVIHIWedrt1OKnQKdhKGDQGT59YkAg1yywXAgkYtASNd3yxoYcWPAgSBw4hAwEdHwGLAQZvFpAUEQA7"></a>
+                </div>
+                <div class="cl_item cl_link cl_flag navbar-text pull-right"><a class="cl_label" href="/cs/start"><img
+                        alt="česká vlajka"
+                        src="data:image/gif;base64,R0lGODlhEgANALMAADV4zfLy8s3NzUiCz+cAAJ2dnexvbbfN6+3t7d4AAPj4+N/f3+hfXZIzXKK/5MFZbSH5BAAAAAAALAAAAAASAA0AAARNsMhJKx0H6b26X4I0YEpplkEahMU4OKeiBsgqujCqbqw7ALDZBtFzAQAPg9LAaDJvP0CDQE1Yr4nbcUolYK9abvVrvTXIaNEZTba4LREAOw=="></a>
+                </div>
+            </div>
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/dcterms">REPOZITÁŘE VŠCHT PRAHA</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/dcterms"><span class="menu-item">domů</span></a></li>
+                    <li><a href="#"><span class="menu-item">repozitáře</span></a></li>
+                    <li><a href="#"><span class="menu-item">přihlásit se</span></a></li>
+                </ul>
+
+
+            </div><!-- /.navbar-collapse -->
+        </div>
+    </nav>
+{% endblock %}
+
+
+
+<div class="content">
+
+    <div class="col-md-3">
+        <img src="{% static "baseOArepo/images/logoCesnet.png" %}" id="logoCesnet"/>
+        {% block left_block %}
+        {% endblock %}
+    <a href="/dcterms/add" class="btn btn-primary">{% trans "Vytvořit nový dokument" %}</a>
+    </div>
+    <div class="col-md-9">
+        {% block content %}
+            <h1>{% block h1 %}{% endblock %}</h1>
+
+            <div class="row">
+                {% block inner_content %}{% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+</div>
+
+<div style="clear: both"></div>
+
+{% block footer %}
+    <footer class="footer">
+        <div class="container">
+            <div class="col-md-3">
+                CESNET Data Care
+            </div>
+            <div class="col-md-9">
+                Copyright 2014-2016 Centrum informačních služeb, Vysoká škola chemicko-technologická v Praze.
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+</html>

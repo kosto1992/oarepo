@@ -1,0 +1,8 @@
+{% load i18n %}
+{% load l10n %}
+{% load dcterms_dokumenty %}
+
+<div class="row document">
+    <div class="col-md-12"><a href="{{ item.id|id_from_path }}"> <h3>{{ item.title|rdf2lang|escape }}</h3></a></div>
+    <div class="col-md-3">{% trans "Autor" %}:</div><div class="col-md-9">{{ item.creator }}</div>
+</div>

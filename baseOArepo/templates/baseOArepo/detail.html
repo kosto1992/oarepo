@@ -1,0 +1,50 @@
+{% extends "baseOArepo/base.html" %}
+{% load i18n %}
+{% load l10n %}
+{% load dcterms_dokumenty %}
+
+{% block title %}OArepo - {{ object.title }} {% endblock %}
+
+
+{% block left_block %}
+    {% with object.id|get_document as document %}
+
+        {% if document.filename != None %}
+            {% include "baseOArepo/fragments/stahovani.html" %}
+        {% endif %}
+    {% endwith %}
+{% endblock %}
+
+{% block content %}
+    <h1>{% block h1 %}{{ object.title|rdf2lang }}{% endblock %}</h1>
+
+    <div class="container-fluid">
+        {% block inner_content %}
+
+            {% for name, value in object|get_fields %}
+                <div class="row">
+                    <div class="col-md-3 nazev_property">{{ name }}</div>
+                    <div class="col-md-9 hodnota_property">
+                        {{ value }}
+                    </div>
+                </div>
+            {% endfor %}
+
+            <div class="childrens">
+                {% for child in object.children %}
+                    <div class="row document">
+                        <div class="col-md-12"><a href="{{ child.id|id_from_path }}">
+                            <h3>{{ child.title|rdf2lang|escape }}</h3></a></div>
+                        <div class="col-md-3">{% trans "Autor" %}:</div>
+                        <div class="col-md-9">{{ child.creator }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <a href="/dcterms/edit/{{ object.id|id_from_path }}" class="btn btn-primary">{%  trans "Upravit" %}</a>
+
+        {% endblock %}
+    </div>
+{% endblock %}
+
+

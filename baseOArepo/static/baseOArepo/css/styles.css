@@ -1,0 +1,211 @@
+.multilang-child-field span {
+    font-weight: normal;
+}
+
+.multilang-child-field {
+    display: block;
+}
+
+.multilang-field-group {
+    padding-left: 2em;
+    border-left: 2px solid lightgray;
+}
+
+/*------- header ---------*/
+.navbar-custom {
+    background-color: #4c4d4f !important;
+    border-bottom: 12px solid #b6265f !important;
+    color: #ffffff !important;
+}
+
+.navbar-custom a {
+    color: #ffffff !important;
+}
+
+.navbar-toggle {
+    background-color: #ffffff;
+}
+
+.flags div {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.cl_flag img {
+    height: 20px;
+}
+
+.nav > li > a {
+    padding-left: 0 !important;
+}
+
+.navbar-custom li a span.menu-item {
+    padding-left: 15px;
+    border-left: solid 1px #ffffff;
+}
+
+.navbar-custom li:last-child a span.menu-item {
+    padding-right: 15px;
+    border-right: solid 1px #ffffff;
+}
+
+/*------- body ---------*/
+body {
+    padding-top: 70px;
+}
+
+div.content {
+    max-width: 1230px;
+    margin: 0 auto;
+}
+
+.container-fluid {
+    max-width: 1230px;
+}
+
+img#logoCesnet {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.content h1 {
+    height: 65px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    color: #4c4d4f;
+}
+
+.content > .col-md-3 {
+    padding-left: 0 !important;
+}
+
+.content * {
+    overflow-wrap: break-word;
+}
+
+.hodnota_property {
+    color: #4b98c4;
+}
+
+.childrens {
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background-color: #b6265f !important;
+    border-color: #a6265f !important;
+}
+
+.content>.col-md-3>.btn-primary {
+    width: 100%;
+}
+/*---------- list-documents -------*/
+.document h3 {
+    margin-bottom: 0;
+}
+
+/*---------- search-bar --------*/
+.left-search-bar {
+    border: solid 1px #bcbdc0;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.left-search-bar * {
+    position: initial !important;
+}
+
+.left-search-bar .input-group-btn {
+    position: absolute !important;
+    bottom: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+}
+
+.left-search-bar .input-group-btn button {
+    width: 100%;
+    text-transform: uppercase;
+    background-color: #e7e7e8;
+    border: none;
+    border-top-left-radius: 3px !important;
+    border-top-right-radius: 3px !important;
+}
+
+.left-search-bar .input-group {
+    width: 100%;
+}
+
+.left-search-bar .input-group input {
+    border-top-right-radius: 3px !important;
+    border-bottom-right-radius: 3px !important;
+}
+
+.left-search-bar > form > div {
+    margin: 10px;
+}
+
+.left-search-bar > form .col-lg-8 {
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+.content > div > .panel > form> .search {
+    background: #b6265f url("../images/search-13-64.ico") no-repeat !important;
+
+}
+
+/*---------- download-left-bar ------------*/
+.content > div > .panel {
+    border: solid 1px #bcbdc0;
+    margin-bottom: 20px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content > div > .panel > .download {
+    background: #b6265f url("../images/download.png") no-repeat !important;
+
+}
+
+.content > div > .panel > .panel-heading, .content > div > .panel > form >.panel-heading  {
+    padding: 20px 10px 20px 55px;
+    margin: 0;
+    background-position: 15px center !important;
+    background-color: #b6265f;
+    background-size: 25px 25px !important;
+    color: #ffffff !important;
+}
+
+/*---------- footer ----------*/
+.footer {
+    height: 60px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.footer .container {
+    width: 100%;
+    max-width: 1230px;
+    margin: 0 auto;
+    border-top: 12px solid #b6265f;
+}
+
+.footer .col-md-9 {
+    color: #939598;
+}
+
+@media only screen and (max-width: 991px) {
+
+    .content > .col-md-3 {
+        padding-left: 15px !important;
+    }
+
+}
+
+@media all and (max-width: 515px) {
+    /*------- body ---------*/
+    body {
+        padding-top: 80px;
+    }
+}

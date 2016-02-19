@@ -1,0 +1,43 @@
+{% extends "baseOArepo/base.html" %}
+
+{% load i18n %}
+
+{% block title %}OARepo - Rozšířené vyhledávání{% endblock %}
+
+
+{% block left_block %}
+    <div class="left-search-bar panel">
+        <form>
+
+            <div class="panel-heading search">
+                <h4>{% trans "Hledat" %}</h4>
+            </div>
+            {% block search_bar %}
+            {% endblock %}
+
+            {% block ordering %}
+            {% endblock %}
+
+            {% block facets %}
+            {% endblock %}
+
+            <div class="placeholder" style="height: 50px;"></div>
+
+        </form>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+    <h1>
+        {% block h1 %}{% trans "Rozšířené vyhledávání" %}{% endblock %}</h1>
+    <div class="container-fluid">
+        {% block search_results %}
+        {% endblock %}
+    </div>
+
+
+
+{% endblock %}
+
+
