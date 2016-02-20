@@ -63,7 +63,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': 'C:/Users/lukas/Documents/Oarepo/python/oarepo/debug.log',
+            'filename': 'C:/Users/lkost/Documents/Oarepo/python/oarepo/debug.log',
         },
     },
     'loggers': {

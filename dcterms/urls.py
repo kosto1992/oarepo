@@ -1,6 +1,8 @@
 from django.conf.urls import url, include, patterns
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
+
+from baseOArepo.generic_urls import repository_patterns
 from fedoralink.models import FedoraObject
 from fedoralink.common_namespaces.dc import DCObject
 
@@ -44,27 +46,6 @@ class DCTermsDetailView(GenericDetailView):
     prefix = None
     template_name = "baseOArepo/detail.html"
 
-urlpatterns = [
-    url(r'^', include(patterns('',
-                               url(r'^$', dcterms.views.index, name="index"),
-                               #    breadcrumb=_('dcterms:index')),
-
-                               url(r'^extended_search(?P<parametry>.*)$', DCTermsDokumentIndexerView.as_view(),
-                                  name='rozsirene_hledani'),
-                               #    breadcrumb=_('Rozšířené hledání')),
-
-                               url('^add$', DCTermsDokumentCreate.as_view(
+urlpatterns = repository_patterns(index=dcterms.views.index, extended_search=DCTermsDokumentIndexerView.as_view(), add=DCTermsDokumentCreate.as_view(
                                    parent_collection=lambda x: FedoraObject.objects.get(pk='test')
-                               ), name='pridani_dcterms_object'),
-                               #     breadcrumb=_('Přidání akreditace')),
-                               #
-                               url('^((?P<pk>[0-9a-z_-]+))$', DCTermsDetailView.as_view(prefix = "test/"), name="detail"),
-                               # url('^((?P<id>[0-9a-z_-]+))$', dcterms.views.detail, name="detail"),
-                               #     breadcrumb=_('dcterms:detail')),
-                               #
-                               url('^download/(?P<bitstream_id>[0-9a-z_-]+)$', dcterms.views.download, name="download"),
-                               #     breadcrumb=_('dcterms:download')),
-                               url('^edit/((?P<pk>[0-9a-z_-]+))$', DCTermsEditView.as_view(prefix = "test/"), name="detail"),
-
-                               ),namespace="dcterms"))
-]
+                               ), detail=DCTermsDetailView.as_view(prefix = "test/"), download=dcterms.views.download, edit=DCTermsEditView.as_view(prefix = "test/"), namespace="dcterms")

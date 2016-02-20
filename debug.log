@@ -5289,3 +5289,112 @@ Not Found: /favicon.ico
 (0.001) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
 (0.001) QUERY = 'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
 Not Found: /favicon.ico
+(0.001) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+(0.001) QUERY = 'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+Internal Server Error: /dcterms/
+Traceback (most recent call last):
+  File "C:\Users\lukas\.virtenv\oarepo\lib\site-packages\django\core\urlresolvers.py", line 403, in url_patterns
+    iter(patterns)
+TypeError: 'NoneType' object is not iterable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\lukas\.virtenv\oarepo\lib\site-packages\django\core\handlers\base.py", line 119, in get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Users\lukas\.virtenv\oarepo\lib\site-packages\django\core\urlresolvers.py", line 367, in resolve
+    sub_match = pattern.resolve(new_path)
+  File "C:\Users\lukas\.virtenv\oarepo\lib\site-packages\django\core\urlresolvers.py", line 365, in resolve
+    for pattern in self.url_patterns:
+  File "C:\Users\lukas\.virtenv\oarepo\lib\site-packages\django\core\urlresolvers.py", line 410, in url_patterns
+    raise ImproperlyConfigured(msg.format(name=self.urlconf_name))
+django.core.exceptions.ImproperlyConfigured: The included urlconf '<module 'dcterms.urls' from 'C:\\Users\\lukas\\Documents\\Oarepo\\python\\oarepo\\dcterms\\urls.py'>' does not appear to have any patterns in it. If you see valid patterns in the file then the issue is probably caused by a circular import.
+(0.001) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+(0.001) QUERY = 'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+Not Found: /favicon.ico
+(0.001) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+(0.001) QUERY = 'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+(0.001) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+(0.001) QUERY = 'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+(0.001) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
+(0.000) QUERY = 'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()
+Not Found: /
+Not Found: /favicon.ico
+Internal Server Error: /dcterms/extended_search
+Traceback (most recent call last):
+  File "C:\Users\lkost\.virtenv\oarepo\lib\site-packages\django\core\paginator.py", line 34, in validate_number
+    number = int(number)
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\lkost\Documents\Oarepo\python\fedoralink\fedoralink\views.py", line 62, in get
+    page = paginator.page(page)
+  File "C:\Users\lkost\.virtenv\oarepo\lib\site-packages\django\core\paginator.py", line 50, in page
+    number = self.validate_number(number)
+  File "C:\Users\lkost\.virtenv\oarepo\lib\site-packages\django\core\paginator.py", line 36, in validate_number
+    raise PageNotAnInteger('That page number is not an integer')
+django.core.paginator.PageNotAnInteger: That page number is not an integer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python34\Lib\urllib\request.py", line 1183, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers)
+  File "C:\Python34\Lib\http\client.py", line 1137, in request
+    self._send_request(method, url, body, headers)
+  File "C:\Python34\Lib\http\client.py", line 1182, in _send_request
+    self.endheaders(body)
+  File "C:\Python34\Lib\http\client.py", line 1133, in endheaders
+    self._send_output(message_body)
+  File "C:\Python34\Lib\http\client.py", line 963, in _send_output
+    self.send(msg)
+  File "C:\Python34\Lib\http\client.py", line 898, in send
+    self.connect()
+  File "C:\Python34\Lib\http\client.py", line 871, in connect
+    self.timeout, self.source_address)
+  File "C:\Python34\Lib\socket.py", line 516, in create_connection
+    raise err
+  File "C:\Python34\Lib\socket.py", line 507, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\lkost\.virtenv\oarepo\lib\site-packages\django\core\handlers\base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\lkost\.virtenv\oarepo\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\lkost\.virtenv\oarepo\lib\site-packages\django\views\generic\base.py", line 89, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\lkost\Documents\Oarepo\python\fedoralink\fedoralink\views.py", line 65, in get
+    page = paginator.page(1)
+  File "C:\Users\lkost\.virtenv\oarepo\lib\site-packages\django\core\paginator.py", line 50, in page
+    number = self.validate_number(number)
+  File "C:\Users\lkost\.virtenv\oarepo\lib\site-packages\django\core\paginator.py", line 39, in validate_number
+    if number > self.num_pages:
+  File "C:\Users\lkost\.virtenv\oarepo\lib\site-packages\django\core\paginator.py", line 86, in _get_num_pages
+    if self.count == 0 and not self.allow_empty_first_page:
+  File "C:\Users\lkost\.virtenv\oarepo\lib\site-packages\django\core\paginator.py", line 72, in _get_count
+    self._count = self.object_list.count()
+  File "C:\Users\lkost\Documents\Oarepo\python\fedoralink\fedoralink\query.py", line 147, in count
+    return self[0:0].execute().count()
+  File "C:\Users\lkost\Documents\Oarepo\python\fedoralink\fedoralink\query.py", line 182, in execute
+    self.__values)
+  File "C:\Users\lkost\Documents\Oarepo\python\fedoralink\fedoralink\indexer.py", line 266, in search
+    data = urlopen(req).read().decode('utf-8')
+  File "C:\Python34\Lib\urllib\request.py", line 161, in urlopen
+    return opener.open(url, data, timeout)
+  File "C:\Python34\Lib\urllib\request.py", line 464, in open
+    response = self._open(req, data)
+  File "C:\Python34\Lib\urllib\request.py", line 482, in _open
+    '_open', req)
+  File "C:\Python34\Lib\urllib\request.py", line 442, in _call_chain
+    result = func(*args)
+  File "C:\Python34\Lib\urllib\request.py", line 1211, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+  File "C:\Python34\Lib\urllib\request.py", line 1185, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>
