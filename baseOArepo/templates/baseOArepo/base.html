@@ -34,13 +34,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/dcterms">REPOZITÁŘE VŠCHT PRAHA</a>
+                <a class="navbar-brand" href="/dcterms">OPEN ACCESS REPOSITORY</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/dcterms"><span class="menu-item">domů</span></a></li>
+                    <li><a href="/{{ appname }}/"><span class="menu-item">domů</span></a></li>
                     <li><a href="#"><span class="menu-item">repozitáře</span></a></li>
                     <li><a href="#"><span class="menu-item">přihlásit se</span></a></li>
                 </ul>
@@ -59,7 +59,7 @@
         <img src="{% static "baseOArepo/images/logoCesnet.png" %}" id="logoCesnet"/>
         {% block left_block %}
         {% endblock %}
-    <a href="/dcterms/add" class="btn btn-primary">{% trans "Vytvořit nový dokument" %}</a>
+    <a href="/{{ appname }}/add" class="btn btn-primary">{% trans "Vytvořit nový dokument" %}</a>
     </div>
     <div class="col-md-9">
         {% block content %}

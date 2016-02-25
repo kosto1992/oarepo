@@ -1,6 +1,7 @@
 {% extends "baseOArepo/base.html" %}
 {% load bootstrap3 %}
 {% load staticfiles %}
+{% load fedoralink_tags %}
 
 {% block title %}"OArepo" - přidání dokumentu{% endblock %}
 
@@ -14,8 +15,10 @@
     <form method="post" enctype="multipart/form-data">
 
         {% csrf_token %}
+        {% for name, field, meta_name in form|get_form_fields %}
+            {% render_field_edit form meta_name name field %}
 
-        {% bootstrap_form form %}
+        {% endfor %}
 
         <div>
             <button type="submit" name="submit" class="btn btn-primary">Uložit</button>

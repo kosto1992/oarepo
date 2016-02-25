@@ -1,0 +1,17 @@
+{% load fedoralink_tags %}
+
+{{ field|get_dir_obj }}
+
+<div class="form-group"><label class="control-label" for="{{ field.auto_id }}">{{ field.label }}</label>
+
+    <div class="multilang-field-group">
+        {% for index, initial_value, language in field|get_languages_data %}
+            <label class="multilang-child-field" for="{{ field.auto_id }}_{{ index }}"><span>{{ language.1 }}</span>
+                <input
+                        class="lang-input form-control" id="{{ field.auto_id }}_{{ index }}" name="{{ field.html_name }}_{{ index }}"
+                        placeholder="{{ field.label }}"
+                        title="{{ language.1 }}"/>
+            </label>
+        {% endfor %}
+    </div>
+</div>

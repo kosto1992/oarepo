@@ -1,4 +1,5 @@
 {% extends "baseOArepo/base.html" %}
+{% load fedoralink_tags %}
 {% load bootstrap3 %}
 {% load staticfiles %}
 
@@ -6,7 +7,7 @@
 
 
 {% block h1 %}
-        OArepo - úprava dokumentu
+    OArepo - úprava dokumentu
 {% endblock %}
 
 {% block inner_content %}
@@ -14,8 +15,11 @@
     <form method="post" enctype="multipart/form-data">
 
         {% csrf_token %}
+        {% for name, field, meta_name in form|get_form_fields %}
 
-        {% bootstrap_form form %}
+            {% render_field_edit form meta_name name field %}
+
+        {% endfor %}
 
         <div>
             <button type="submit" name="submit" class="btn btn-primary">Uložit</button>
