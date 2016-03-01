@@ -23,8 +23,9 @@
         {% block inner_content %}
 
             {% for name, value, meta_name in object|get_fields %}
-
-                {% render_field_view object meta_name name value %}
+                {%  if value %}
+                    {% render_field_view object meta_name name value %}
+                {% endif %}
 
             {% endfor %}
 
@@ -32,7 +33,7 @@
             {% render_links object 'children' %}
             </div>
 
-            <a href="/dcterms/edit/{{ object.id|id_from_path }}" class="btn btn-primary">{%  trans "Upravit" %}</a>
+            <a href="/{{ appname }}/edit/{{ object.id|id_from_path }}" class="btn btn-primary">{%  trans "Upravit" %}</a>
 
         {% endblock %}
     </div>
