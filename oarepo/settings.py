@@ -63,7 +63,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': 'C:/Users/lkost/Documents/Oarepo/python/oarepo/debug.log',
+            'filename': os.path.join(os.path.dirname(__file__), 'debug.log'),
         },
     },
     'loggers': {
@@ -114,9 +114,10 @@ DATABASES = {
 
 DATABASES['repository'] = {
     'ENGINE'          : 'fedoralink.engine',
-    'SEARCH_ENGINE'   : 'fedoralink.indexer.SOLRIndexer',
+    'SEARCH_ENGINE'   : 'fedoralink.indexer.elastic.ElasticIndexer',
     'REPO_URL'        : 'http://127.0.0.1:8080/fcrepo/rest',
-    'SEARCH_URL'      : 'http://127.0.0.1:8983/solr/test'
+    'SEARCH_URL'      : 'http://127.0.0.1:9200/oarepo',
+    'USE_INTERNAL_INDEXER' : True
 }
 
 
