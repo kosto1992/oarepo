@@ -113,13 +113,23 @@ DATABASES = {
     }
 }
 
-DATABASES['repository'] = {
-    'ENGINE'          : 'fedoralink.engine',
-    'SEARCH_ENGINE'   : 'fedoralink.indexer.elastic.ElasticIndexer',
-    'REPO_URL'        : 'http://127.0.0.1:8080/fcrepo/rest',
-    'SEARCH_URL'      : 'http://127.0.0.1:9200/oarepo',
-    'USE_INTERNAL_INDEXER' : True
-}
+import socket
+if '997-a315-05' in socket.gethostname():
+    DATABASES['repository'] = {
+        'ENGINE'          : 'fedoralink.engine',
+        'SEARCH_ENGINE'   : 'fedoralink.indexer.elastic.ElasticIndexer',
+        'REPO_URL'        : 'http://127.0.0.1:8080/rest',
+        'SEARCH_URL'      : 'http://127.0.0.1:9200/oarepo',
+        'USE_INTERNAL_INDEXER' : True
+    }
+else:
+    DATABASES['repository'] = {
+        'ENGINE'          : 'fedoralink.engine',
+        'SEARCH_ENGINE'   : 'fedoralink.indexer.elastic.ElasticIndexer',
+        'REPO_URL'        : 'http://127.0.0.1:8080/fcrepo/rest',
+        'SEARCH_URL'      : 'http://127.0.0.1:9200/oarepo',
+        'USE_INTERNAL_INDEXER' : True
+    }
 
 
 # Password validation
