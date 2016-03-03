@@ -4,7 +4,7 @@
 {% load fedoralink_tags %}
 {% load dcterms_dokumenty %}
 
-{% block title %}OArepo - {{ object.title }} {% endblock %}
+{% block title %}OArepo - {{ object.title|rdf2lang }} {% endblock %}
 
 
 {% block left_block %}
@@ -33,7 +33,7 @@
             {% render_links object 'children' %}
             </div>
 
-            <a href="/{{ appname }}/edit/{{ object.id|id_from_path }}" class="btn btn-primary">{%  trans "Upravit" %}</a>
+            <a href="/{{ appname }}/edit/{{ object.id|id_from_path }}" class="btn btn-primary">{%  trans "Edit" %}</a>
 
         {% endblock %}
     </div>

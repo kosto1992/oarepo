@@ -14,7 +14,7 @@ class ScientistPerson(IndexableFedoraObject):
     surname = IndexedTextField(FOAF.surname, required=True, verbose_name=_('Surname'))
     middlename = IndexedTextField(CESNET.middlename, verbose_name=_('Middle name'))
     nickname = IndexedTextField(FOAF.nickname, verbose_name=_('Nickname'))
-    titles = IndexedTextField(CESNET.titles, multi_valued=True, verbose_name=_('Tituly ()'))       # TODO
+    titles = IndexedTextField(CESNET.titles, multi_valued=True, verbose_name=_('Titles ()'))       # TODO
     degrees = IndexedTextField(CESNET.degrees, multi_valued=True, verbose_name=_('Degrees ()'))    # TODO
     gender = IndexedTextField(CESNET.gender, verbose_name=_('Gender'))
     nationality = IndexedTextField(CESNET.nationality, verbose_name=_('Nationality'))
@@ -39,7 +39,7 @@ class RomanyPerson(IndexableFedoraObject):
     surname = IndexedTextField(FOAF.surname, required=True, verbose_name=_('Surname'))
     middlename = IndexedTextField(CESNET.middlename, verbose_name=_('Middle name'))
     nickname = IndexedTextField(FOAF.nickname, verbose_name=_('Nickname'))
-    titles = IndexedTextField(CESNET.titles, multi_valued=True, verbose_name=_('Tituly ()'))       # TODO
+    titles = IndexedTextField(CESNET.titles, multi_valued=True, verbose_name=_('Titles ()'))       # TODO
     degrees = IndexedTextField(CESNET.degrees, multi_valued=True, verbose_name=_('Degrees ()'))    # TODO
     gender = IndexedTextField(CESNET.gender, verbose_name=_('Gender'))
     nationality = IndexedTextField(CESNET.nationality, verbose_name=_('Nationality'))

@@ -3,16 +3,12 @@
 {% load dcterms_dokumenty %}
 {% load fedoralink_tags %}
 
-{# item: instance AccreditationDocument #}
-{# attachments: instance AccreditationDocumentAttachment #}
-
-
     <div class="panel panel-default">
         <div class="panel-heading download">
-            <h4><i class="fa fa-fw fa-download"></i> {% trans "Stáhnout dokumenty" %}</h4>
+            <h4><i class="fa fa-fw fa-download"></i> {% trans "Download document" %}</h4>
         </div>
         <div class="panel-body">
-            <ul class="stahnout_dokumenty">
+            <ul class="download_documents">
                             <li><a href="{% url 'dcterms:download' bitstream_id=document.id|id_from_path %}">{{ document.filename }}</a></li>
             </ul>
         </div>

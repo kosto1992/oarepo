@@ -8,10 +8,10 @@ from django.utils.translation import ugettext_lazy as _
 
 urlpatterns = repository_patterns(app_name='romiste', model=RomanyThing,
                                   search_facets=[
-                                      ('title', _('Dle nazvu')),
+                                      ('title', _('By title')),
                                   ],
                                   search_orderings=(
-                                      ('title', _('Dle nazvu')),
+                                      ('title', _('By title')),
                                   ),
                                   search_default_ordering='title',
                                   add_parent_collection=lambda x: FedoraObject.objects.get(pk='test'),

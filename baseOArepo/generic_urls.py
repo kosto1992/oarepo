@@ -22,11 +22,11 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
                         search_base_template='baseOArepo/search_base.html',
                         search_list_item_template='baseOArepo/repo_fragments/list/dokument.html',
                         search_facets=[
-                            ('title', _('Dle nazvu')),
+                            ('title', _('By title')),
                         ],
                         search_orderings=(
-                                ('title@cs', _('Dle nazvu')),
-                                ('-title@cs', _('Dle nazvu')),
+                                ('title@cs', _('title')),
+                                ('-title@cs', _('title')),
                         ),
                         search_default_ordering='title@cs',
                         add_template_name='baseOArepo/create.html',

@@ -1,13 +1,14 @@
 {% extends "baseOArepo/base.html" %}
+{% load i18n %}
 {% load bootstrap3 %}
 {% load staticfiles %}
 {% load fedoralink_tags %}
 
-{% block title %}"OArepo" - přidání dokumentu{% endblock %}
+{% block title %}"OArepo" - {% trans "create new document" %}{% endblock %}
 
 
 {% block h1 %}
-        OArepo - přidání dokumentu
+        OArepo - {% trans "create new document" %}
 {% endblock %}
 
 {% block inner_content %}
@@ -21,8 +22,8 @@
         {% endfor %}
 
         <div>
-            <button type="submit" name="submit" class="btn btn-primary">Uložit</button>
-            <button type="submit" name="cancel" class="btn btn-default">Zpět</button>
+            <button type="submit" name="submit" class="btn btn-primary">{% trans "Save" %}</button>
+            <button type="submit" name="cancel" class="btn btn-default">{% trans "Back" %}</button>
         </div>
 
     </form>

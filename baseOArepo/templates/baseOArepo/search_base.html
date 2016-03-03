@@ -2,7 +2,7 @@
 
 {% load i18n %}
 
-{% block title %}OARepo - Rozšířené vyhledávání{% endblock %}
+{% block title %}OARepo - {% trans "extended search" %}{% endblock %}
 
 
 {% block left_block %}
@@ -10,7 +10,7 @@
         <form>
 
             <div class="panel-heading search">
-                <h4>{% trans "Hledat" %}</h4>
+                <h4>{% trans "Search" %}</h4>
             </div>
             {% block search_bar %}
             {% endblock %}
@@ -30,7 +30,7 @@
 
 {% block content %}
     <h1>
-        {% block h1 %}{% trans "Rozšířené vyhledávání" %}{% endblock %}</h1>
+        {% block h1 %}{% trans "Extended search" %}{% endblock %}</h1>
     <div class="container-fluid">
         {% block search_results %}
         {% endblock %}
