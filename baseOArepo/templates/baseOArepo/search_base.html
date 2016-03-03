@@ -25,8 +25,9 @@
 
         </form>
     </div>
-    <a href="/{{ appname }}/add" class="btn btn-primary">{% trans "Create new document" %}</a>
-
+    {% with add_path=appname|add:":add" %}
+    <a href="{% url add_path %}" class="btn btn-primary">{% trans "Create new document" %}</a>
+    {%  endwith %}
 {% endblock %}
 
 
