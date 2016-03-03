@@ -23,8 +23,8 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
                         search_list_item_template='baseOArepo/repo_fragments/list/dokument.html',
                         search_facets=(),
                         search_orderings=(
-                                ('title@en', _('By title (asc)')),
-                                ('-title@en', _('By title (desc)')),
+                                ('title@en', _('Sort by title (asc)')),
+                                ('-title@en', _('Sort by title (desc)')),
                         ),
                         search_default_ordering='title@en',
                         add_template_name='baseOArepo/create.html',
