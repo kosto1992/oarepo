@@ -21,8 +21,7 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
                         download=fedoralink.views.GenericDownloadView, edit=fedoralink.views.GenericEditView,
                         search_base_template='baseOArepo/search_base.html',
                         search_list_item_template='baseOArepo/repo_fragments/list/dokument.html',
-                        search_facets=[
-                        ],
+                        search_facets=(),
                         search_orderings=(
                                 ('title@en', _('By title (asc)')),
                                 ('-title@en', _('By title (desc)')),
