@@ -21,5 +21,7 @@ import dcterms.urls
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^dcterms/', include("dcterms.urls")),
-    url(r'^romiste/', include("romiste.urls"))
+    url(r'^romiste/', include("romiste.urls")),
+
+    url(r'^changeRDFtype/', include("changeRDFtype.urls"))
 ]

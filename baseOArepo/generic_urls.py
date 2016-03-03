@@ -101,7 +101,7 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
                                            get_view(download, model=attachment_model), name="download"),
                                        #     breadcrumb=_('dcterms:download')),
                                        url('^edit/((?P<pk>[0-9a-z_-]+))$',
-                                           get_view(edit, template_name=edit_template_name,
+                                           get_view(edit, model=model, template_name=edit_template_name,
                                                     success_url=app_name + ":" + edit_success_url, prefix=edit_prefix),
                                            name="edit"),
                                        ), namespace=app_name))

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'dcterms',
     'bootstrap_pagination',
     'bootstrap3',
+    'changeRDFtype',
 ]
 
 MIDDLEWARE_CLASSES = [
