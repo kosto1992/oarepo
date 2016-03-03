@@ -8,15 +8,24 @@ from oarepo import settings
 
 django.setup()
 
+
+def reindex(obj, level=0):
+    if 'fedora:' in obj.id:
+        return
+
+    obj.update()
+    types = obj[RDF.type]
+
+    if not URIRef(DC.Object) in types:
+        types.append(URIRef(DC.Object))
+        obj[RDF.type] = types
+        obj.save()
+
+    print("   " * level, obj.id, type(obj))
+
+    for c in obj.children:
+        reindex(c, level + 1)
+
 parent_collection = FedoraObject.objects.get(pk='test')
-parent = parent_collection
-children = parent.list_children()
-print(children)
-for child in children:
-    types = child[RDF.type]
-    if (URIRef(CESNET.RomanyThing) in types) or (URIRef(CESNET.ScientistPerson) in types):
-        continue
-    types.append(URIRef(RDF.Object))
-    child[RDF.type] = types
-    print(child[DC.title])
-    child.save()
+reindex(parent_collection)
+
