@@ -1,241 +1,136 @@
-from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
 from rdflib.namespace import FOAF
 
-from fedoralink.common_namespaces.dc import DCObject
-from fedoralink.fedorans import EBUCORE, FEDORA, CESNET
-from fedoralink.indexer import IndexedField, TEXT, STRING, MULTI_VAL, DATE
-from fedoralink.models import IndexableFedoraObject
-from fedoralink.type_manager import FedoraTypeManager
+from fedoralink.fedorans import CESNET
+from fedoralink.indexer.fields import IndexedTextField, IndexedDateField
+from fedoralink.indexer.models import IndexableFedoraObject
 
 
 class ScientistPerson(IndexableFedoraObject):
-    indexed_fields = [
-        IndexedField('orcid', CESNET.orcid, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Orcid ()')),
-        IndexedField('firstName', FOAF.firstName, stored=True, indexed=True, type=TEXT, prefix='foaf_',
-                     required=True, verbose_name=_('Jméno (foaf)')),
-        IndexedField('surname', FOAF.surname, stored=True, indexed=True, type=TEXT, prefix='foaf_',
-                     verbose_name=_('Přijmení (foaf)')),
-        IndexedField('middlename', CESNET.middlename, stored=True, indexed=True, type=TEXT, prefix='cesnet_',
-                     verbose_name=_('Střední jméno ()')),
-        IndexedField('nickname', FOAF.nickname, stored=True, indexed=True, type=STRING, prefix='foaf_',
-                     verbose_name=_('Nickname (foaf)')),
-        IndexedField('titles', CESNET.titles, stored=True, indexed=True, type=MULTI_VAL | STRING, prefix='cesnet_',
-                     verbose_name=_('Tituly ()')),
-        IndexedField('degrees', CESNET.degrees, stored=True, indexed=True, type=MULTI_VAL | STRING, prefix='cesnet_',
-                     verbose_name=_('Degrees ()')),
-        IndexedField('gender', CESNET.gender, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Pohlaví ()')),
-        IndexedField('nationality', CESNET.nationality, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Národnost ()')),
-        IndexedField('language', CESNET.language, stored=True, indexed=True, type=MULTI_VAL | STRING, prefix='cesnet_',
-                     verbose_name=_('Jazyk ()')),
-        IndexedField('birthday', CESNET.birthday, stored=True, indexed=True, type=DATE, prefix='cesnet_',
-                     verbose_name=_('Datum narození ()')),
-        IndexedField('birthplace', CESNET.birthplace, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Místo narození ()')),
-        IndexedField('deathday', CESNET.deathday, stored=True, indexed=True, type=DATE, prefix='cesnet_',
-                     verbose_name=_('Datum úmrtí ()')),
-        IndexedField('deathplace', CESNET.deathplace, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Místo úmrtí ()')),
-        IndexedField('phone', CESNET.phone, stored=True, indexed=True, type=MULTI_VAL | STRING, prefix='cesnet_',
-                     verbose_name=_('Telefonní číslo ()')),
-        IndexedField('email', CESNET.email, stored=True, indexed=True, type=MULTI_VAL | STRING, prefix='cesnet_',
-                     verbose_name=_('Email ()')),
-        IndexedField('web', CESNET.web, stored=True, indexed=True, type=MULTI_VAL | STRING, prefix='cesnet_',
-                     verbose_name=_('Web ()')),
-        IndexedField('photo', CESNET.photo, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Foto ()')),
-        IndexedField('notes', CESNET.notes, stored=True, indexed=True, type=TEXT, prefix='cesnet_',
-                     verbose_name=_('Poznámka ()')),
-    ]
+    orcid = IndexedTextField(CESNET.orcid, verbose_name=_('Orcid'))
+    firstName = IndexedTextField(FOAF.firstName, required=True, verbose_name=_('First name'))
+    surname = IndexedTextField(FOAF.surname, required=True, verbose_name=_('Surname'))
+    middlename = IndexedTextField(CESNET.middlename, verbose_name=_('Middle name'))
+    nickname = IndexedTextField(FOAF.nickname, verbose_name=_('Nickname'))
+    titles = IndexedTextField(CESNET.titles, multi_valued=True, verbose_name=_('Tituly ()'))       # TODO
+    degrees = IndexedTextField(CESNET.degrees, multi_valued=True, verbose_name=_('Degrees ()'))    # TODO
+    gender = IndexedTextField(CESNET.gender, verbose_name=_('Gender'))
+    nationality = IndexedTextField(CESNET.nationality, verbose_name=_('Nationality'))
+    language = IndexedTextField(CESNET.language, multi_valued=True, verbose_name=_('Primary language'))
+    birthday = IndexedDateField(CESNET.birthday, verbose_name=_('Date of Birth'))
+    birthplace = IndexedTextField(CESNET.birthplace, verbose_name=_('Birthplace'))
+    deathday = IndexedDateField(CESNET.deathday, verbose_name=_('Date of Death'))
+    deathplace = IndexedTextField(CESNET.deathplace, verbose_name=_('Place of Death'))
+    phone = IndexedTextField(CESNET.phone, multi_valued=True, verbose_name=_('Phone number'))
+    email = IndexedTextField(CESNET.email, multi_valued=True, verbose_name=_('Email'))
+    web = IndexedTextField(CESNET.web, multi_valued=True, verbose_name=_('Web page'))
+    photo = IndexedTextField(CESNET.photo, verbose_name=_('Photo'))
+    notes = IndexedTextField(CESNET.notes, verbose_name=_('Notes'), attrs={"presentation": "textarea"})
 
-    def created(self):
-        super().created()
-        self.types.add(CESNET.ScientistPerson)
+    class Meta:
+        rdf_types = (CESNET.ScientistPerson, )
 
-FedoraTypeManager.register_model(ScientistPerson, on_rdf_type=[CESNET.ScientistPerson])
 
 class RomanyPerson(IndexableFedoraObject):
-    indexed_fields = [
-        IndexedField('firstName', FOAF.firstName, stored=True, indexed=True, type=TEXT, prefix='foaf_',
-                     required=True, verbose_name=_('Jméno (foaf)')),
-        IndexedField('surname', FOAF.surname, stored=True, indexed=True, type=TEXT, prefix='foaf_',
-                     verbose_name=_('Přijmení (foaf)')),
-        IndexedField('middlename', CESNET.middlename, stored=True, indexed=True, type=TEXT, prefix='cesnet_',
-                     verbose_name=_('Střední jméno ()')),
-        IndexedField('nickname', FOAF.nickname, stored=True, indexed=True, type=STRING, prefix='foaf_',
-                     verbose_name=_('Nickname (foaf)')),
-        IndexedField('titles', CESNET.titles, stored=True, indexed=True, type=MULTI_VAL | STRING, prefix='cesnet_',
-                     verbose_name=_('Tituly ()')),
-        IndexedField('degrees', CESNET.degrees, stored=True, indexed=True, type=MULTI_VAL | STRING, prefix='cesnet_',
-                     verbose_name=_('Degrees ()')),
-        IndexedField('gender', CESNET.gender, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Pohlaví ()')),
-        IndexedField('nationality', CESNET.nationality, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Národnost ()')),
-        IndexedField('language', CESNET.language, stored=True, indexed=True, type=MULTI_VAL | STRING, prefix='cesnet_',
-                     verbose_name=_('Jazyk ()')),
-        IndexedField('birthday', CESNET.birthday, stored=True, indexed=True, type=DATE, prefix='cesnet_',
-                     verbose_name=_('Datum narození ()')),
-        IndexedField('birthplace', CESNET.birthplace, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Místo narození ()')),
-        IndexedField('deathday', CESNET.deathday, stored=True, indexed=True, type=DATE, prefix='cesnet_',
-                     verbose_name=_('Datum úmrtí ()')),
-        IndexedField('deathplace', CESNET.deathplace, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Místo úmrtí ()')),
-        IndexedField('phone', CESNET.phone, stored=True, indexed=True, type=MULTI_VAL | STRING, prefix='cesnet_',
-                     verbose_name=_('Telefonní číslo ()')),
-        IndexedField('email', CESNET.email, stored=True, indexed=True, type=MULTI_VAL | STRING, prefix='cesnet_',
-                     verbose_name=_('Email ()')),
-        IndexedField('web', CESNET.web, stored=True, indexed=True, type=MULTI_VAL | STRING, prefix='cesnet_',
-                     verbose_name=_('Web ()')),
-        IndexedField('photo', CESNET.photo, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Foto ()')),
-        IndexedField('notes', CESNET.notes, stored=True, indexed=True, type=TEXT, prefix='cesnet_',
-                     verbose_name=_('Poznámka ()')),
-        IndexedField('dialect', CESNET.dialect, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Dialekt ()')),
-        IndexedField('child_of', CESNET.child_of, stored=True, indexed=True, type=MULTI_VAL | STRING, prefix='cesnet_',
-                     verbose_name=_('Dítě ()')),
-        IndexedField('parent_of', CESNET.child_of, stored=True, indexed=True, type=MULTI_VAL | STRING, prefix='cesnet_',
-                     verbose_name=_('Rodič ()')),
-    ]
+    orcid = IndexedTextField(CESNET.orcid, verbose_name=_('Orcid'))
+    firstName = IndexedTextField(FOAF.firstName, required=True, verbose_name=_('First name'))
+    surname = IndexedTextField(FOAF.surname, required=True, verbose_name=_('Surname'))
+    middlename = IndexedTextField(CESNET.middlename, verbose_name=_('Middle name'))
+    nickname = IndexedTextField(FOAF.nickname, verbose_name=_('Nickname'))
+    titles = IndexedTextField(CESNET.titles, multi_valued=True, verbose_name=_('Tituly ()'))       # TODO
+    degrees = IndexedTextField(CESNET.degrees, multi_valued=True, verbose_name=_('Degrees ()'))    # TODO
+    gender = IndexedTextField(CESNET.gender, verbose_name=_('Gender'))
+    nationality = IndexedTextField(CESNET.nationality, verbose_name=_('Nationality'))
+    language = IndexedTextField(CESNET.language, multi_valued=True, verbose_name=_('Primary language'))
+    birthday = IndexedDateField(CESNET.birthday, verbose_name=_('Date of Birth'))
+    birthplace = IndexedTextField(CESNET.birthplace, verbose_name=_('Birthplace'))
+    deathday = IndexedDateField(CESNET.deathday, verbose_name=_('Date of Death'))
+    deathplace = IndexedTextField(CESNET.deathplace, verbose_name=_('Place of death'))
+    phone = IndexedTextField(CESNET.phone, multi_valued=True, verbose_name=_('Phone number'))
+    email = IndexedTextField(CESNET.email, multi_valued=True, verbose_name=_('Email'))
+    web = IndexedTextField(CESNET.web, multi_valued=True, verbose_name=_('Web page'))
+    photo = IndexedTextField(CESNET.photo, verbose_name=_('Photo'))
+    notes = IndexedTextField(CESNET.notes, verbose_name=_('Notes'), attrs={"presentation": "textarea"})
 
-    def created(self):
-        super().created()
-        self.types.add(CESNET.RomanyPerson)
+    dialect = IndexedTextField(CESNET.dialect, verbose_name=_('Dialect'))
+    parent = IndexedTextField(CESNET.parent, multi_valued=True, verbose_name=_('Parent'))
+    child  = IndexedTextField(CESNET.child, multi_valued=True, verbose_name=_('Child'))
 
-FedoraTypeManager.register_model(RomanyPerson, on_rdf_type=[CESNET.RomanyPerson])
+    class Meta:
+        rdf_types = (CESNET.RomanyPerson, )
+
 
 class Place(IndexableFedoraObject):
-    indexed_fields = [
-        IndexedField('title', CESNET.title, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     required=True, verbose_name=_('Název ()')),
-        IndexedField('title_alt', CESNET.title_alt, stored=True, indexed=True, type=MULTI_VAL | STRING, prefix='cesnet_',
-                     verbose_name=_('Alternativní název/Tag ()')),
-        IndexedField('street', CESNET.street, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Ulice ()')),
-        IndexedField('land_registry_number', CESNET.land_registry_number, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Číslo krajiny ()')),
-        IndexedField('house_number', CESNET.house_number, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Popisné číslo ()')),
-        IndexedField('zip', CESNET.zip, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('PSČ ()')),
-        IndexedField('district', CESNET.district, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Okres ()')),
-        IndexedField('region', CESNET.region, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Kraj ()')),
-        IndexedField('country', CESNET.country, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Štát ()')),
-        IndexedField('gps', CESNET.gps, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('GPS ()')),
-        IndexedField('photo', CESNET.photo, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Fotka ()')),
-        IndexedField('notes', CESNET.notes, stored=True, indexed=True, type=TEXT, prefix='cesnet_',
-                     verbose_name=_('Poznámky ()')),
+    title = IndexedTextField(CESNET.title, required=True, verbose_name=_('Place name'))
+    title_alt = IndexedTextField(CESNET.title_alt, multi_valued=True, verbose_name=_('Alternative name'))
+    street = IndexedTextField(CESNET.street, verbose_name=_('Street'))
+    land_registry_number = IndexedTextField(CESNET.land_registry_number, verbose_name=_('Číslo krajiny ()'))   # TODO
+    house_number = IndexedTextField(CESNET.house_number, verbose_name=_('House number'))
+    zip = IndexedTextField(CESNET.zip, verbose_name=_('ZIP code'))
+    district = IndexedTextField(CESNET.district, verbose_name=_('District'))
+    region = IndexedTextField(CESNET.region, verbose_name=_('Region'))
+    country = IndexedTextField(CESNET.country, verbose_name=_('Country'))
+    gps = IndexedTextField(CESNET.gps, verbose_name=_('GPS ()'))   # TODO
+    photo = IndexedTextField(CESNET.photo, verbose_name=_('Photo'))
+    notes = IndexedTextField(CESNET.notes, verbose_name=_('Notes'), attrs={'presentation': 'textarea'})
 
-        IndexedField('language', CESNET.language, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Jazyk ()')),
-        IndexedField('dialect', CESNET.dialect, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Dialekt ()')),
-        IndexedField('title_romany', CESNET.title_romany, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Rómsky název ()')),
-        IndexedField('title_alt_romany', CESNET.title_alt_romany, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Alternativní rómsky název ()')),
-    ]
+    language = IndexedTextField(CESNET.language, multi_valued=True, verbose_name=_('Language'))
+    dialect = IndexedTextField(CESNET.dialect, verbose_name=_('Dialect'))
+    title_romany = IndexedTextField(CESNET.title_romany, verbose_name=_('Place name (Romani)'))
+    title_alt_romany = IndexedTextField(CESNET.title_alt_romany, verbose_name=_('Alternative name (Romani)'))
 
-    def created(self):
-        super().created()
-        self.types.add(CESNET.Place)
+    class Meta:
+        rdf_types = (CESNET.Place, )
 
-FedoraTypeManager.register_model(Place, on_rdf_type=[CESNET.Place])
 
 class Thing(IndexableFedoraObject):
-    indexed_fields = [
-        IndexedField('title', CESNET.title, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     required=True, verbose_name=_('Název ()')),
-        IndexedField('creator', CESNET.creator, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Autor ()')),
-        IndexedField('creation_date', CESNET.creation_date, stored=True, indexed=True, type=DATE, prefix='cesnet_',
-                     verbose_name=_('Datum vytvoření ()')),
-        IndexedField('creation_place', CESNET.creation_place, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Místo vytvoření ()')),
-        IndexedField('keyword', CESNET.keyword, stored=True, indexed=True, type=MULTI_VAL | STRING, prefix='cesnet_',
-                     verbose_name=_('Klíčová slova ()')),
-        IndexedField('description', CESNET.description, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Popis ()')),
-    ]
+    title = IndexedTextField(CESNET.title, required=True, verbose_name=_('Title'))
+    creator = IndexedTextField(CESNET.creator, verbose_name=_('Creator'))
+    creation_date = IndexedDateField(CESNET.creation_date, verbose_name=_('Creation Date'))
+    creation_place = IndexedTextField(CESNET.creation_place, verbose_name=_('Creation Place'))
+    keyword = IndexedTextField(CESNET.keyword, multi_valued=True, verbose_name=_('Keywords'))
+    description = IndexedTextField(CESNET.description, verbose_name=_('Description'),
+                                   attrs={'presentation': 'textarea'})
 
-    def created(self):
-        super().created()
-        self.types.add(CESNET.Thing)
+    class Meta:
+        rdf_types = (CESNET.Thing, )
 
-FedoraTypeManager.register_model(Thing, on_rdf_type=[CESNET.Thing])
 
 class RomanyThing(IndexableFedoraObject):
-    indexed_fields = [
-        IndexedField('title', CESNET.title, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     required=True, verbose_name=_('Název ()')),
-        IndexedField('creator', CESNET.creator, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Autor ()')),
-        IndexedField('creation_date', CESNET.creation_date, stored=True, indexed=True, type=DATE, prefix='cesnet_',
-                     verbose_name=_('Datum vytvoření ()')),
-        IndexedField('creation_place', CESNET.creation_place, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Místo vytvoření ()')),
-        IndexedField('keyword', CESNET.keyword, stored=True, indexed=True, type=MULTI_VAL | STRING, prefix='cesnet_',
-                     verbose_name=_('Klíčová slova ()')),
-        IndexedField('description', CESNET.description, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Popis ()')),
-        IndexedField('respondent', CESNET.respondent, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Respondent ()')),
-        IndexedField('circumstance', CESNET.circumstance, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Okolnosti ()')),
-        IndexedField('record_type', CESNET.record_type, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Typ nahrávky ()')),
-        IndexedField('technical_notes', CESNET.technical_notes, stored=True, indexed=True, type=TEXT, prefix='cesnet_',
-                     verbose_name=_('Technické poznámky ()')),
-    ]
+    title = IndexedTextField(CESNET.title, required=True, verbose_name=_('Title'))
+    creator = IndexedTextField(CESNET.creator, verbose_name=_('Creator'))
+    creation_date = IndexedDateField(CESNET.creation_date, verbose_name=_('Creation Date'))
+    creation_place = IndexedTextField(CESNET.creation_place, verbose_name=_('Creation Place'))
+    keyword = IndexedTextField(CESNET.keyword, multi_valued=True, verbose_name=_('Keywords'))
+    description = IndexedTextField(CESNET.description, verbose_name=_('Description'),
+                                   attrs={'presentation': 'textarea'})
 
-    def created(self):
-        super().created()
-        self.types.add(CESNET.RomanyThing)
+    respondent = IndexedTextField(CESNET.respondent, verbose_name=_('Respondent'))
+    circumstance = IndexedTextField(CESNET.circumstance, verbose_name=_('Circumstance'))
+    record_type = IndexedTextField(CESNET.record_type, verbose_name=_('Recording Type'))
+    technical_notes = IndexedTextField(CESNET.technical_notes, verbose_name=_('Technical Notes'),
+                                       attrs={'presentation': 'textarea'})
 
-FedoraTypeManager.register_model(RomanyThing, on_rdf_type=[CESNET.RomanyThing])
+    class Meta:
+        rdf_types = (CESNET.RomanyThing, )
+
 
 class Tag(IndexableFedoraObject):
-    indexed_fields = [
-        IndexedField('title', CESNET.title, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     required=True, verbose_name=_('Název ()')),
-    ]
+    title = IndexedTextField(CESNET.title, required=True, verbose_name=_('Tag name'))
 
-    def created(self):
-        super().created()
-        self.types.add(CESNET.Tag)
+    class Meta:
+        rdf_types = (CESNET.Tag, )
 
-FedoraTypeManager.register_model(Tag, on_rdf_type=[CESNET.Tag])
 
 class Event(IndexableFedoraObject):
-    indexed_fields = [
-        IndexedField('title', CESNET.title, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     required=True, verbose_name=_('Název ()')),
-        IndexedField('date_from', CESNET.date_from, stored=True, indexed=True, type=DATE, prefix='cesnet_',
-                     verbose_name=_('Od ()')),
-        IndexedField('date_to', CESNET.date_to, stored=True, indexed=True, type=DATE, prefix='cesnet_',
-                     verbose_name=_('Do ()')),
-        IndexedField('place', CESNET.place, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Místo ()')),
-        IndexedField('actor', CESNET.actor, stored=True, indexed=True, type=STRING, prefix='cesnet_',
-                     verbose_name=_('Herec ()')),
-        IndexedField('description', CESNET.description, stored=True, indexed=True, type=TEXT, prefix='cesnet_',
-                     verbose_name=_('Popis ()')),
-    ]
+    title = IndexedTextField(CESNET.title, required=True, verbose_name=_('Title'))
+    date_from = IndexedDateField(CESNET.date_from, verbose_name=_('Start'))
+    date_to = IndexedDateField(CESNET.date_to, verbose_name=_('End'))
+    place = IndexedTextField(CESNET.place, verbose_name=_('Place'))
+    actor = IndexedTextField(CESNET.actor, verbose_name=_('Actor'))
+    description = IndexedTextField(CESNET.description, verbose_name=_('Description'))
 
-    def created(self):
-        super().created()
-        self.types.add(CESNET.Event)
-
-FedoraTypeManager.register_model(Event, on_rdf_type=[CESNET.Event])
+    class Meta:
+        rdf_types = (CESNET.Event, )

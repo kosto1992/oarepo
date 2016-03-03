@@ -1,0 +1,14 @@
+source_this_to_activate
+run_this_to_activate
+apache/static/
+.idea
+__pycache__/
+*pyc
+*~
+*orig
+*bak
+*.pyd
+.idea/
+db.sqlite3
+apache/oarepo.wsgi
+debug.log
