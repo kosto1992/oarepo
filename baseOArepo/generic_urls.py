@@ -1,6 +1,6 @@
 import inspect
 
-from django.core.urlresolvers import resolve
+from django.core.urlresolvers import resolve, reverse
 
 import fedoralink.views
 
@@ -30,9 +30,10 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
                         ),
                         search_default_ordering='title@cs',
                         add_template_name='baseOArepo/create.html',
-                        add_parent_collection=None, add_success_url='index',
+                        add_parent_collection=None, add_success_url='detail', add_success_url_param_names=('pk',),
                         detail_template_name='baseOArepo/detail.html', detail_prefix="",
-                        edit_template_name='baseOArepo/edit.html', edit_success_url='index', edit_prefix="",
+                        edit_template_name='baseOArepo/edit.html', edit_success_url='detail', edit_prefix="",
+                        edit_success_url_param_names=('pk',),
                         attachment_model=None,
                         custom_patterns=None):
     pat = [
@@ -48,8 +49,9 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
         #    breadcrumb=_('Rozšířené hledání')),
 
         url('^add$', get_view(add, model=model, template_name=add_template_name,
-                             success_url=app_name + ":" + add_success_url,
-                             parent_collection=add_parent_collection)
+                              success_url=app_name + ":" + add_success_url,
+                              success_url_param_names=add_success_url_param_names,
+                              parent_collection=add_parent_collection)
            , name='add'),
         #     breadcrumb=_('Přidání akreditace')),
         #
@@ -58,7 +60,9 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
         #     breadcrumb=_('dcterms:download')),
         url('^edit/(?P<pk>[^/]+)$',
             get_view(edit, model=model, template_name=edit_template_name,
-                     success_url=app_name + ":" + edit_success_url, prefix=edit_prefix),
+                     success_url=app_name + ":" + edit_success_url,
+                     success_url_param_names=edit_success_url_param_names,
+                     prefix=edit_prefix),
             name="edit"),
         url('^(?P<pk>[^/]+)$',
             get_view(detail, template_name=detail_template_name,
