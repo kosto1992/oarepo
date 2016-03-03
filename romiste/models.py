@@ -3,9 +3,14 @@ from django.utils.translation import ugettext_lazy as _
 # Create your models here.
 from rdflib.namespace import FOAF
 
+from fedoralink.common_namespaces.dc import DCObject
 from fedoralink.fedorans import CESNET
-from fedoralink.indexer.fields import IndexedTextField, IndexedDateField
+from fedoralink.indexer.fields import IndexedTextField, IndexedDateField, IndexedLinkedField
 from fedoralink.indexer.models import IndexableFedoraObject
+
+
+class Image(DCObject):
+    pass
 
 
 class ScientistPerson(IndexableFedoraObject):
@@ -26,7 +31,7 @@ class ScientistPerson(IndexableFedoraObject):
     phone = IndexedTextField(CESNET.phone, multi_valued=True, verbose_name=_('Phone number'))
     email = IndexedTextField(CESNET.email, multi_valued=True, verbose_name=_('Email'))
     web = IndexedTextField(CESNET.web, multi_valued=True, verbose_name=_('Web page'))
-    photo = IndexedTextField(CESNET.photo, verbose_name=_('Photo'))
+    photo = IndexedLinkedField(CESNET.photo, verbose_name=_('Photo'), model=Image)
     notes = IndexedTextField(CESNET.notes, verbose_name=_('Notes'), attrs={"presentation": "textarea"})
 
     class Meta:
