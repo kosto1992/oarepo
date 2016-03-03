@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'bootstrap_pagination',
     'bootstrap3',
     'changeRDFtype',
+    'romiste',
 ]
 
 MIDDLEWARE_CLASSES = [

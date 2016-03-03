@@ -18,6 +18,6 @@ urlpatterns = repository_patterns(app_name='romiste', model=RomanyThing,
                                   attachment_model=None, custom_patterns=url('^addPerson$', get_view(
         fedoralink.views.GenericDocumentCreate, model=ScientistPerson,
         template_name='baseOArepo/create.html',
-        success_url="romiste:index",
-        parent_collection=lambda x: FedoraObject.objects.get(pk='test'))
+        success_url="romiste:index",success_url_param_names=('pk',),
+        parent_collection=None)
                                                                              , name='add'), )
