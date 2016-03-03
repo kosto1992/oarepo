@@ -10,7 +10,9 @@ from fedoralink.indexer.models import IndexableFedoraObject
 
 
 class Image(DCObject):
-    pass
+
+    class Meta:
+        rdf_types = (CESNET.Image, )
 
 
 class ScientistPerson(IndexableFedoraObject):
@@ -23,7 +25,7 @@ class ScientistPerson(IndexableFedoraObject):
     degrees = IndexedTextField(CESNET.degrees, multi_valued=True, verbose_name=_('Degrees ()'))    # TODO
     gender = IndexedTextField(CESNET.gender, verbose_name=_('Gender'))
     nationality = IndexedTextField(CESNET.nationality, verbose_name=_('Nationality'))
-    language = IndexedTextField(CESNET.language, multi_valued=True, verbose_name=_('Primary language'))
+    language = IndexedTextField(CESNET.language, verbose_name=_('Primary language'))
     birthday = IndexedDateField(CESNET.birthday, verbose_name=_('Date of Birth'))
     birthplace = IndexedTextField(CESNET.birthplace, verbose_name=_('Birthplace'))
     deathday = IndexedDateField(CESNET.deathday, verbose_name=_('Date of Death'))
