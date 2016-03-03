@@ -33,6 +33,7 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
                         edit_template_name='baseOArepo/edit.html', edit_success_url='detail', edit_prefix="",
                         edit_success_url_param_names=('pk',),
                         attachment_model=None,
+
                         custom_patterns=None):
     pat = [
         url(r'^$', get_view(index, app_name=app_name), name="index"),

@@ -33,7 +33,9 @@
             {% render_links object 'children' %}
             </div>
 
-            <a href="/{{ appname }}/edit/{{ object.id|id_from_path }}" class="btn btn-primary">{%  trans "Edit" %}</a>
+            {% with edit_path=appname|add:":edit" %}
+            <a href="{% url edit_path pk=object.id|id_from_path %}" class="btn btn-primary">{%  trans "Edit" %}</a>
+            {% endwith %}
 
         {% endblock %}
     </div>
