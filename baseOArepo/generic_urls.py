@@ -25,10 +25,10 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
                             ('title', _('By title')),
                         ],
                         search_orderings=(
-                                ('title@cs', _('title')),
-                                ('-title@cs', _('title')),
+                                ('title@en', _('By title (asc)')),
+                                ('-title@en', _('By title (desc)')),
                         ),
-                        search_default_ordering='title@cs',
+                        search_default_ordering='title@en',
                         add_template_name='baseOArepo/create.html',
                         add_parent_collection=None, add_success_url='detail', add_success_url_param_names=('pk',),
                         detail_template_name='baseOArepo/detail.html', detail_prefix="",

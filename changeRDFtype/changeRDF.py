@@ -8,6 +8,10 @@ from oarepo import settings
 
 django.setup()
 
+import logging
+for handler in logging.root.handlers[:]:
+    logging.root.removeHandler(handler)
+logging.basicConfig(level=logging.INFO)
 
 def reindex(obj, level=0):
     if 'fedora:' in obj.id:
@@ -26,6 +30,6 @@ def reindex(obj, level=0):
     for c in obj.children:
         reindex(c, level + 1)
 
-parent_collection = FedoraObject.objects.get(pk='test')
+parent_collection = FedoraObject.objects.get(pk='theses')
 reindex(parent_collection)
 
