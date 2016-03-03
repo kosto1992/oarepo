@@ -40,9 +40,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/{{ appname }}/"><span class="menu-item">domů</span></a></li>
-                    <li><a href="#"><span class="menu-item">repozitáře</span></a></li>
-                    <li><a href="#"><span class="menu-item">přihlásit se</span></a></li>
+                    <li><a href="/{{ appname }}/"><span class="menu-item">{% trans "Home" %}</span></a></li>
+                    <li><a href="#"><span class="menu-item">{% trans "Repositories" %}</span></a></li>
+                    <li><a href="#"><span class="menu-item">{% trans "Log in" %}</span></a></li>
                 </ul>
 
 
@@ -59,7 +59,7 @@
         <img src="{% static "baseOArepo/images/logoCesnet.png" %}" id="logoCesnet"/>
         {% block left_block %}
         {% endblock %}
-    <a href="/{{ appname }}/add" class="btn btn-primary">{% trans "Vytvořit nový dokument" %}</a>
+    <a href="/{{ appname }}/add" class="btn btn-primary">{% trans "Create new document" %}</a>
     </div>
     <div class="col-md-9">
         {% block content %}
@@ -81,7 +81,7 @@
                 CESNET Data Care
             </div>
             <div class="col-md-9">
-                Copyright 2014-2016 Centrum informačních služeb, Vysoká škola chemicko-technologická v Praze.
+                Copyright 2014-2016 CESNET, z.s.p.o.
             </div>
         </div>
     </footer>
