@@ -64,7 +64,7 @@ class RomanyPerson(IndexableFedoraObject):
     phone = IndexedTextField(CESNET.phone, multi_valued=True, verbose_name=_('Phone number'))
     email = IndexedTextField(CESNET.email, multi_valued=True, verbose_name=_('Email'))
     web = IndexedTextField(CESNET.web, multi_valued=True, verbose_name=_('Web page'))
-    photo = IndexedTextField(CESNET.photo, verbose_name=_('Photo'))
+    photo = IndexedBinaryField(CESNET.photo, verbose_name=_('Photo'), model=Image)
     notes = IndexedTextField(CESNET.notes, verbose_name=_('Notes'), attrs={"presentation": "textarea"})
 
     dialect = IndexedTextField(CESNET.dialect, verbose_name=_('Dialect'))
