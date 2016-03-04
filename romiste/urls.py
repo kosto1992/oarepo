@@ -20,6 +20,8 @@ urlpatterns_scientistPerson = repository_patterns(app_name='romiste_scientistPer
                                                       ('surname', _('Sort by surname')),
                                                       ('-surname', _('Sort by surname (desc)')),
                                                   ),
+                                                  search_list_item_template='romiste/repo_fragments/list/dokument.html',
+                                                  detail_template_name='romiste/scientists/detail.html',
                                                   search_default_ordering='surname',
                                                   add_parent_collection=lambda x: FedoraObject.objects.get(pk='romiste/scientists'),
                                                   attachment_model=None, )

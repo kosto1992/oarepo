@@ -14,6 +14,9 @@
             {% include "baseOArepo/fragments/stahovani.html" %}
         {% endif %}
     {% endwith %}
+    {% with index_path=appname|add:":index" %}
+    <a href="{% url index_path %}" class="btn btn-primary">{% trans "Show all" %}</a>
+    {%  endwith %}
 {% endblock %}
 
 {% block content %}
