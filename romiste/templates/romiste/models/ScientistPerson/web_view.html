@@ -1,0 +1,11 @@
+{% load fedoralink_tags %}
+
+<div class="row">
+    <div class="col-md-3 property_name">{{ name }}</div>
+    <div class="col-md-9 property_value">
+        {% for url in value|get_urls %}
+            <a href="{{ url }}">{{ url }}</a><br>
+        {% endfor %}
+    </div>
+</div>
+

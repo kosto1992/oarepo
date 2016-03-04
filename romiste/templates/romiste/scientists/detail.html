@@ -1,0 +1,56 @@
+{% extends "baseOArepo/base.html" %}
+{% load i18n %}
+{% load l10n %}
+{% load fedoralink_tags %}
+{% load dcterms_dokumenty %}
+{% load staticfiles %}
+
+{% block head %}
+    {{ block.super }}
+    <link href="{% static "romiste/css/romiste.css" %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block title %}OArepo - {{ object.title|rdf2lang }} {% endblock %}
+
+
+{% block left_block %}
+    {% with object.id|get_document as document %}
+
+        {% if document.filename != None %}
+            {% include "baseOArepo/fragments/stahovani.html" %}
+        {% endif %}
+    {% endwith %}
+{% endblock %}
+
+{% block content %}
+    <h1>{% block h1 %}{{ object.title|rdf2lang }}{% endblock %}</h1>
+
+    <div class="container-fluid">
+        {% block inner_content %}
+            <div class="col-md-4 pull-left">
+                <a href="{{ object.photo }}"><img src="{{ object.photo }}" class="scientist-photo"/></a>
+            </div>
+            <div class="informations col-md-8 pull-left">
+                {% for name, value, meta_name in object|get_fields %}
+                    {% if meta_name != 'photo' %}
+                        {% if value %}
+                            {% render_field_view object meta_name name value %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div style="clear:both;"></div>
+            {#            <div class="childrens">#}
+            {#            {% render_links object 'children' %}#}
+            {#            </div>#}
+            <div class="edit">
+                {% with edit_path=appname|add:":edit" %}
+                    <a href="{% url edit_path pk=object.id|id_from_path %}"
+                       class="btn btn-primary">{% trans "Edit" %}</a>
+                {% endwith %}
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}
+
+
