@@ -4,11 +4,11 @@
 {% load staticfiles %}
 {% load fedoralink_tags %}
 
-{% block title %}"OArepo" - {% trans "create new document" %}{% endblock %}
+{% block title %}{{ view.title }} - {% endblock %}
 
 
 {% block h1 %}
-        OArepo - {% trans "create new document" %}
+        {{ view.title }}
 {% endblock %}
 
 {% block inner_content %}

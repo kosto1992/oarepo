@@ -33,7 +33,11 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
                         edit_template_name='baseOArepo/edit.html', edit_success_url='detail', edit_prefix="",
                         edit_success_url_param_names=('pk',),
                         attachment_model=None,
-
+                        labels = {
+                            'search_title':_('Documents'),
+                            'create_title':_('Create a New Document'),
+                            'create_button_title' : _('Create a New Document')
+                        },
                         custom_patterns=None):
     pat = [
         url(r'^$', get_view(index, app_name=app_name), name="index"),
@@ -43,14 +47,16 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
             get_view(extended_search, model=model, base_template=search_base_template,
                      list_item_template=search_list_item_template, facets=search_facets,
                      orderings=search_orderings,
-                     default_ordering=search_default_ordering),
+                     default_ordering=search_default_ordering,
+                     title=labels['search_title'], create_button_title=labels['create_button_title']),
             name='rozsirene_hledani'),
         #    breadcrumb=_('Rozšířené hledání')),
 
         url('^add$', get_view(add, model=model, template_name=add_template_name,
                               success_url=app_name + ":" + add_success_url,
                               success_url_param_names=add_success_url_param_names,
-                              parent_collection=add_parent_collection)
+                              parent_collection=add_parent_collection,
+                              title=labels['create_title'])
            , name='add'),
         #     breadcrumb=_('Přidání akreditace')),
         #

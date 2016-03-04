@@ -2,7 +2,7 @@
 
 {% load i18n %}
 
-{% block title %}OARepo - {% trans "extended search" %}{% endblock %}
+{% block title %}{{ title }} - {% endblock %}
 
 
 {% block left_block %}
@@ -25,22 +25,20 @@
 
         </form>
     </div>
+
     {% with add_path=appname|add:":add" %}
-    <a href="{% url add_path %}" class="btn btn-primary">{% trans "Create new document" %}</a>
+    <a href="{% url add_path %}" class="btn btn-primary cesnet-create-new-button">{{ create_button_title }}</a>
     {%  endwith %}
 {% endblock %}
 
 
 {% block content %}
     <h1>
-        {% block h1 %}{% trans "Extended search" %}{% endblock %}</h1>
+        {% block h1 %}{{ title }}{% endblock %}</h1>
     <div class="container-fluid">
         {% block search_results %}
         {% endblock %}
     </div>
-
-
-
 {% endblock %}
 
 

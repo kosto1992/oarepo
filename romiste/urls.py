@@ -27,13 +27,19 @@ urlpatterns_scientistPerson = repository_patterns(app_name='romiste_scientistPer
                                                   attachment_model=None, )
 
 urlpatterns_place = repository_patterns(app_name='romiste_place', model=Place,
-                                              search_facets=[],
-                                              search_orderings=(
-                                                  ('title', _('Sort by name')),
-                                              ),
-                                              search_default_ordering='title',
-                                              add_parent_collection=lambda x: FedoraObject.objects.get(pk='romiste/places'),
-                                              attachment_model=None, )
+                                        search_facets=[],
+                                        search_orderings=(
+                                          ('title', _('Sort by name')),
+                                        ),
+                                        search_default_ordering='title',
+                                        add_parent_collection=lambda x: FedoraObject.objects.get(pk='romiste/places'),
+                                        attachment_model=None,
+                                        labels = {
+                                            'search_title':_('Recording places'),
+                                            'create_title':_('Add a New Place'),
+                                            'create_button_title':_('Add a New Place')
+                                        },
+                                        )
 
 urlpatterns = [
     url(r'recordings/', include(patterns('',

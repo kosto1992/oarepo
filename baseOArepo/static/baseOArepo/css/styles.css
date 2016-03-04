@@ -210,6 +210,21 @@ img#logoCesnet {
     }
 }
 
+.left-search-bar .panel-heading.search {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+.cesnet-left-block .cesnet-create-new-button {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.cesnet-content {
+    min-height: 600px !important;
+
+}
+
 .btn-file {
     position: relative;
     overflow: hidden;
