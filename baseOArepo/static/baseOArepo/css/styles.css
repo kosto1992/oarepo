@@ -229,3 +229,7 @@ img#logoCesnet {
     cursor: inherit;
     display: block;
 }
+
+.dynamic-multivalue-child-field {
+    width: 100%;
+}
