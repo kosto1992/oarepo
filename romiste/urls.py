@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from baseOArepo.generic_urls import repository_patterns
 from fedoralink.models import FedoraObject
 from romiste.models import ScientistPerson, RomanyThing, Place, RomanyPerson
+import romiste.view
 
 urlpatterns_romanyThing = repository_patterns(app_name='romiste_romanyThing', model=RomanyThing,
                                               search_facets=[],
@@ -74,4 +75,6 @@ urlpatterns = [
     url(r'respondents/', include(patterns('',
                                          *urlpatterns_romanyPerson
                                          ))),
+    url(r'^', include(patterns('',
+                               url('^$', romiste.view.index, name="index")), namespace='romiste'))
 ]
