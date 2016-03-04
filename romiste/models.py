@@ -73,13 +73,12 @@ class Place(IndexableFedoraObject):
     title = IndexedTextField(CESNET.title, required=True, verbose_name=_('Place name'))
     title_alt = IndexedTextField(CESNET.title_alt, multi_valued=True, verbose_name=_('Alternative name'))
     street = IndexedTextField(CESNET.street, verbose_name=_('Street'))
-    land_registry_number = IndexedTextField(CESNET.land_registry_number, verbose_name=_('Číslo krajiny ()'))   # TODO
     house_number = IndexedTextField(CESNET.house_number, verbose_name=_('House number'))
     zip = IndexedTextField(CESNET.zip, verbose_name=_('ZIP code'))
     district = IndexedTextField(CESNET.district, verbose_name=_('District'))
     region = IndexedTextField(CESNET.region, verbose_name=_('Region'))
     country = IndexedTextField(CESNET.country, verbose_name=_('Country'))
-    gps = IndexedTextField(CESNET.gps, verbose_name=_('GPS ()'))   # TODO
+    gps = IndexedTextField(CESNET.gps, verbose_name=_('GPS'), help_text=_('Lattitude and longitude, separated with ; or ,'))
     photo = IndexedTextField(CESNET.photo, verbose_name=_('Photo'))
     notes = IndexedTextField(CESNET.notes, verbose_name=_('Notes'), attrs={'presentation': 'textarea'})
 
