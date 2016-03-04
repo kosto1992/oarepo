@@ -11,6 +11,7 @@ urlpatterns_romanyThing = repository_patterns(app_name='romiste_romanyThing', mo
                                                   ('title', _('Sort by title')),
                                               ),
                                               search_default_ordering='title',
+                                              search_list_item_template='romiste/repo_fragments/list/recordings.html',
                                               add_parent_collection=lambda x: FedoraObject.objects.get(pk='romiste/recordings'),
                                               attachment_model=None, )
 

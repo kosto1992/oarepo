@@ -15,6 +15,11 @@ class Image(DCObject):
         rdf_types = (CESNET.Image, )
 
 
+class Video(DCObject):
+
+    class Meta:
+        rdf_types = (CESNET.Video, )
+
 class ScientistPerson(IndexableFedoraObject):
     orcid = IndexedTextField(CESNET.orcid, verbose_name=_('Orcid'))
     firstName = IndexedTextField(FOAF.firstName, required=True, verbose_name=_('First name'))
@@ -115,6 +120,7 @@ class RomanyThing(IndexableFedoraObject):
 
     respondent = IndexedTextField(CESNET.respondent, verbose_name=_('Respondent'))
     circumstance = IndexedTextField(CESNET.circumstance, verbose_name=_('Circumstance'))
+    video = IndexedBinaryField(CESNET.video, verbose_name=_('Record'), model=Video)
     record_type = IndexedTextField(CESNET.record_type, verbose_name=_('Recording Type'))
     technical_notes = IndexedTextField(CESNET.technical_notes, verbose_name=_('Technical Notes'),
                                        attrs={'presentation': 'textarea'})
