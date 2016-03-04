@@ -5,7 +5,8 @@ from rdflib.namespace import FOAF
 
 from fedoralink.common_namespaces.dc import DCObject
 from fedoralink.fedorans import CESNET
-from fedoralink.indexer.fields import IndexedTextField, IndexedDateField, IndexedLinkedField, IndexedBinaryField
+from fedoralink.indexer.fields import IndexedTextField, IndexedDateField, IndexedLinkedField, IndexedBinaryField, \
+    IndexedGPSField
 from fedoralink.indexer.models import IndexableFedoraObject
 
 
@@ -83,7 +84,7 @@ class Place(IndexableFedoraObject):
     district = IndexedTextField(CESNET.district, verbose_name=_('District'))
     region = IndexedTextField(CESNET.region, verbose_name=_('Region'))
     country = IndexedTextField(CESNET.country, verbose_name=_('Country'))
-    gps = IndexedTextField(CESNET.gps, verbose_name=_('GPS'), help_text=_('Lattitude and longitude, separated with ; or ,'))
+    gps = IndexedGPSField(CESNET.gps, verbose_name=_('GPS'), help_text=_('Lattitude and longitude, separated with ; or ,'))
     photo = IndexedTextField(CESNET.photo, verbose_name=_('Photo'))
     notes = IndexedTextField(CESNET.notes, verbose_name=_('Notes'), attrs={'presentation': 'textarea'})
 
