@@ -17,6 +17,10 @@
     {% with index_path=appname|add:":index" %}
     <a href="{% url index_path %}" class="btn btn-primary">{% trans "Show all" %}</a>
     {%  endwith %}
+
+    {% block left_addon %}
+        <div id="left-addon"></div>
+    {% endblock %}
 {% endblock %}
 
 {% block content %}

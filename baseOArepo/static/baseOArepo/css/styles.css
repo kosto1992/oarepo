@@ -248,3 +248,12 @@ img#logoCesnet {
 .dynamic-multivalue-child-field {
     width: 100%;
 }
+
+#left-addon {
+    width:100%;
+}
+
+.detail-view-map {
+    margin-top: 20px;
+    border: 1px solid lightgray;
+}
