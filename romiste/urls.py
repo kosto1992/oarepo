@@ -58,7 +58,8 @@ urlpatterns_place = repository_patterns(app_name='romiste_place', model=Place,
                                         labels={
                                             'search_title': _('Recording places'),
                                             'create_title': _('Add a New Place'),
-                                            'create_button_title': _('Add a New Place')
+                                            'create_button_title': _('Add a New Place'),
+                                            'edit_title': _('Edit Place')
                                         },
                                         )
 

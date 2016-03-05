@@ -4,7 +4,7 @@
 {% load staticfiles %}
 
 {% block head %}
-
+    <meta charset="utf-8" />
     <title>{% block title %}{% endblock %}CESNET DataCare Repository</title>
 
     <link href="{% static "baseOArepo/css/styles.css" %}" rel="stylesheet" type="text/css">
@@ -15,6 +15,7 @@
     <script src="{% static "bootstrap3-dialog/js/bootstrap-dialog.min.js" %}"></script>
     <link href="{% static "bootstrap3-dialog/css/bootstrap-dialog.min.css" %}" rel="stylesheet" type="text/css">
     <link href="{% static "fedoralink/google-maps.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "fedoralink/fedoralink.css" %}" rel="stylesheet" type="text/css">
 
     <!-- TODO: add domain for the API key -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZIruvU8_AvyLEZ1YcG_49mOFND8wOWmk&libraries=places">

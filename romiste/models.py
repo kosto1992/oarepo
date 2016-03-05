@@ -6,7 +6,7 @@ from rdflib.namespace import FOAF
 from fedoralink.common_namespaces.dc import DCObject
 from fedoralink.fedorans import CESNET
 from fedoralink.indexer.fields import IndexedTextField, IndexedDateField, IndexedLinkedField, IndexedBinaryField, \
-    IndexedGPSField
+    IndexedGPSField, IndexedField
 from fedoralink.indexer.models import IndexableFedoraObject
 
 
@@ -78,13 +78,13 @@ class RomanyPerson(IndexableFedoraObject):
 class Place(IndexableFedoraObject):
     title = IndexedTextField(CESNET.title, required=True, verbose_name=_('Place name'))
     title_alt = IndexedTextField(CESNET.title_alt, multi_valued=True, verbose_name=_('Alternative name'))
-    street = IndexedTextField(CESNET.street, verbose_name=_('Street'))
-    house_number = IndexedTextField(CESNET.house_number, verbose_name=_('House number'))
-    zip = IndexedTextField(CESNET.zip, verbose_name=_('ZIP code'))
-    district = IndexedTextField(CESNET.district, verbose_name=_('District'))
-    region = IndexedTextField(CESNET.region, verbose_name=_('Region'))
-    country = IndexedTextField(CESNET.country, verbose_name=_('Country'))
-    gps = IndexedGPSField(CESNET.gps, verbose_name=_('GPS'), help_text=_('Lattitude and longitude, separated with ; or ,'))
+    gps = IndexedGPSField(CESNET.gps, verbose_name=_('GPS'), help_text=_('Lattitude and longitude, separated with comma. Click on the button on the right to choose location on map.'), level=IndexedField.RECOMMENDED)
+    street = IndexedTextField(CESNET.street, verbose_name=_('Street'), level=IndexedField.RECOMMENDED)
+    house_number = IndexedTextField(CESNET.house_number, verbose_name=_('House number'), level=IndexedField.RECOMMENDED)
+    zip = IndexedTextField(CESNET.zip, verbose_name=_('ZIP code'), level=IndexedField.RECOMMENDED)
+    district = IndexedTextField(CESNET.district, verbose_name=_('District'), level=IndexedField.RECOMMENDED)
+    region = IndexedTextField(CESNET.region, verbose_name=_('Region'), level=IndexedField.RECOMMENDED)
+    country = IndexedTextField(CESNET.country, verbose_name=_('Country'), level=IndexedField.RECOMMENDED)
     photo = IndexedTextField(CESNET.photo, verbose_name=_('Photo'))
     notes = IndexedTextField(CESNET.notes, verbose_name=_('Notes'), attrs={'presentation': 'textarea'})
 

@@ -33,11 +33,7 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
                         edit_template_name='baseOArepo/edit.html', edit_success_url='detail', edit_prefix="",
                         edit_success_url_param_names=('pk',),
                         attachment_model=None,
-                        labels = {
-                            'search_title':_('Documents'),
-                            'create_title':_('Create a New Document'),
-                            'create_button_title' : _('Create a New Document')
-                        },
+                        labels = {},
                         custom_patterns=None):
     pat = [
         url(r'^$', get_view(index, app_name=app_name), name="index"),
@@ -48,7 +44,8 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
                      list_item_template=search_list_item_template, facets=search_facets,
                      orderings=search_orderings,
                      default_ordering=search_default_ordering,
-                     title=labels['search_title'], create_button_title=labels['create_button_title']),
+                     title=labels.get('search_title', 'Documents'),
+                     create_button_title=labels.get('create_button_title', 'Create a New Document')),
             name='rozsirene_hledani'),
         #    breadcrumb=_('Rozšířené hledání')),
 
@@ -56,7 +53,7 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
                               success_url=app_name + ":" + add_success_url,
                               success_url_param_names=add_success_url_param_names,
                               parent_collection=add_parent_collection,
-                              title=labels['create_title'])
+                              title=labels.get('create_title', 'Create Document'))
            , name='add'),
         #     breadcrumb=_('Přidání akreditace')),
         #
@@ -67,7 +64,7 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
             get_view(edit, model=model, template_name=edit_template_name,
                      success_url=app_name + ":" + edit_success_url,
                      success_url_param_names=edit_success_url_param_names,
-                     prefix=edit_prefix),
+                     prefix=edit_prefix, title=labels.get('edit_title', 'Edit Document')),
             name="edit"),
         url('^(?P<pk>[^/]+)$',
             get_view(detail, template_name=detail_template_name,
