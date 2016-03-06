@@ -54,6 +54,7 @@ urlpatterns_place = repository_patterns(app_name='romiste_place', model=Place,
                                         ),
                                         search_default_ordering='title',
                                         add_parent_collection=lambda x: FedoraObject.objects.get(pk='romiste/places'),
+                                        search_list_item_template='romiste/repo_fragments/list/place.html',
                                         attachment_model=None,
                                         labels={
                                             'search_title': _('Recording places'),

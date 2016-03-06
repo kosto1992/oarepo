@@ -16,7 +16,10 @@
 
     <div class="container-fluid">
         {% block inner_content %}
-
+            <a href="{% url 'romiste_scientistPerson:index' %}">Scientists</a><br>
+            <a href="{% url 'romiste_romanyPerson:index' %}">Respondents</a><br>
+            <a href="{% url 'romiste_place:index' %}">Places</a><br>
+            <a href="{% url 'romiste_romanyThing:index' %}">Recordings</a><br>
         {% endblock %}
     </div>
 {% endblock %}

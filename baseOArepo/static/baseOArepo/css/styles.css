@@ -71,7 +71,7 @@ img#logoCesnet {
 .content h1 {
     height: 65px;
     margin-top: 40px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     color: #4c4d4f;
 }
 
@@ -256,4 +256,8 @@ img#logoCesnet {
 .detail-view-map {
     margin-top: 20px;
     border: 1px solid lightgray;
+}
+
+.search-results-without-pagination {
+    min-height: 267px;
 }
