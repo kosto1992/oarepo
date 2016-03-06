@@ -247,6 +247,7 @@ img#logoCesnet {
 
 .dynamic-multivalue-child-field {
     width: 100%;
+    font-weight: normal;
 }
 
 #left-addon {
@@ -260,4 +261,8 @@ img#logoCesnet {
 
 .search-results-without-pagination {
     min-height: 267px;
+}
+
+.list-places-place {
+    margin-bottom: 5px !important;
 }

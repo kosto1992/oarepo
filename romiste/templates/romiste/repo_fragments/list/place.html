@@ -3,5 +3,7 @@
 {% load fedoralink_tags %}
 
 <div class="row document">
-   <div class="col-md-12"><a href="{{ item.id|id_from_path }}"> <h3>{{ item.title }}</h3></a></div>
+   <div class="col-md-12"><a href="{{ item.id|id_from_path }}"> <h3 class="list-places-place">{{ item.title }}</h3>
+   {{ item.street|default_if_none:"" }} {{ item.house_number|default_if_none:"" }}, {{ item.town }}, {{ item.country }}
+   </a></div>
 </div>
