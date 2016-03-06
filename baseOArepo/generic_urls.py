@@ -35,6 +35,13 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
                         attachment_model=None,
                         labels = {},
                         custom_patterns=None):
+
+    fedoralink.views.ModelViewRegistry.register_view(model, 'search', app_name, 'rozsirene_hledani')
+    fedoralink.views.ModelViewRegistry.register_view(model, 'add', app_name, 'add')
+    fedoralink.views.ModelViewRegistry.register_view(model, 'download', app_name, 'download')
+    fedoralink.views.ModelViewRegistry.register_view(model, 'edit', app_name, 'edit')
+    fedoralink.views.ModelViewRegistry.register_view(model, 'detail', app_name, 'detail')
+
     pat = [
         url(r'^$', get_view(index, app_name=app_name), name="index"),
         #    breadcrumb=_('dcterms:index')),
