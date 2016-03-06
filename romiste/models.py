@@ -24,8 +24,8 @@ class Video(DCObject):
 class ScientistPerson(IndexableFedoraObject):
     orcid = IndexedTextField(CESNET.orcid, verbose_name=_('Orcid'))
     firstName = IndexedTextField(FOAF.firstName, required=True, verbose_name=_('First name'))
-    surname = IndexedTextField(FOAF.surname, required=True, verbose_name=_('Surname'))
-    middlename = IndexedTextField(CESNET.middlename, verbose_name=_('Middle name'))
+    surname = IndexedTextField(FOAF.surname, required=True, verbose_name=_('Last name'))
+    middlename = IndexedTextField(CESNET.middlename, verbose_name=_('Middle name(s)'))
     nickname = IndexedTextField(FOAF.nickname, verbose_name=_('Nickname'))
     titles = IndexedTextField(CESNET.titles, multi_valued=True, verbose_name=_('Titles ()'))       # TODO
     degrees = IndexedTextField(CESNET.degrees, multi_valued=True, verbose_name=_('Degrees ()'))    # TODO
@@ -33,13 +33,13 @@ class ScientistPerson(IndexableFedoraObject):
     nationality = IndexedTextField(CESNET.nationality, verbose_name=_('Nationality'))
     language = IndexedTextField(CESNET.language, verbose_name=_('Primary language'))
     birthday = IndexedDateField(CESNET.birthday, verbose_name=_('Date of Birth'))
-    birthplace = IndexedTextField(CESNET.birthplace, verbose_name=_('Birthplace'))
+    birthplace = IndexedLinkedField(CESNET.birthplace, 'romiste.Place', verbose_name=_('Birthplace'))
     deathday = IndexedDateField(CESNET.deathday, verbose_name=_('Date of Death'))
     deathplace = IndexedTextField(CESNET.deathplace, verbose_name=_('Place of Death'))
     phone = IndexedTextField(CESNET.phone, multi_valued=True, verbose_name=_('Phone number'))
     email = IndexedTextField(CESNET.email, multi_valued=True, verbose_name=_('Email'))
     web = IndexedTextField(CESNET.web, multi_valued=True, verbose_name=_('Web page'))
-    photo = IndexedBinaryField(CESNET.photo, verbose_name=_('Photo'), model=Image)
+    photo = IndexedBinaryField(CESNET.photo, Image, verbose_name=_('Photo'))
     notes = IndexedTextField(CESNET.notes, verbose_name=_('Notes'), attrs={"presentation": "textarea"})
 
     class Meta:
@@ -64,7 +64,7 @@ class RomanyPerson(IndexableFedoraObject):
     phone = IndexedTextField(CESNET.phone, multi_valued=True, verbose_name=_('Phone number'))
     email = IndexedTextField(CESNET.email, multi_valued=True, verbose_name=_('Email'))
     web = IndexedTextField(CESNET.web, multi_valued=True, verbose_name=_('Web page'))
-    photo = IndexedBinaryField(CESNET.photo, verbose_name=_('Photo'), model=Image)
+    photo = IndexedBinaryField(CESNET.photo, Image, verbose_name=_('Photo'))
     notes = IndexedTextField(CESNET.notes, verbose_name=_('Notes'), attrs={"presentation": "textarea"})
 
     dialect = IndexedTextField(CESNET.dialect, verbose_name=_('Dialect'))
@@ -121,7 +121,7 @@ class RomanyThing(IndexableFedoraObject):
 
     respondent = IndexedTextField(CESNET.respondent, verbose_name=_('Respondent'))
     circumstance = IndexedTextField(CESNET.circumstance, verbose_name=_('Circumstance'))
-    video = IndexedBinaryField(CESNET.video, verbose_name=_('Record'), model=Video)
+    video = IndexedBinaryField(CESNET.video, Video, verbose_name=_('Record'))
     record_type = IndexedTextField(CESNET.record_type, verbose_name=_('Recording Type'))
     technical_notes = IndexedTextField(CESNET.technical_notes, verbose_name=_('Technical Notes'),
                                        attrs={'presentation': 'textarea'})
