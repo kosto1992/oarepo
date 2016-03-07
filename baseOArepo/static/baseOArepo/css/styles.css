@@ -96,9 +96,10 @@ img#logoCesnet {
     border-color: #a6265f !important;
 }
 
-.content>.col-md-3>.btn-primary {
+.content > .col-md-3 > .btn-primary {
     width: 100%;
 }
+
 /*---------- list-documents -------*/
 .document h3 {
     margin-bottom: 0;
@@ -149,9 +150,41 @@ img#logoCesnet {
     padding: 0 !important;
 }
 
-.content > div > .panel > form> .search {
+.content > div > .panel > form > .search {
     background: #b6265f url("../images/search-13-64.ico") no-repeat !important;
 
+}
+
+/*---------- index list-repositories ------------*/
+div.repository {
+    padding: 0;
+}
+
+div.repository-list-item {
+    width: 90%;
+    border: 1px solid #bcbdc0;
+    padding: 0;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+div.repository .repository-header {
+    padding: 10px 10px 10px 20px;
+    margin: 0;
+    color: #ffffff !important;
+    background: #b6265f url("../images/documents.png") no-repeat !important;
+    background-size: 25px 25px !important;
+    background-position: 90% center !important;
+}
+div.repository-list-item .repository-detail {
+    margin: 10px;
+    height: 250px;
+    position: relative;
+}
+div.repository-list-item .btn {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
 }
 
 /*---------- download-left-bar ------------*/
@@ -168,7 +201,7 @@ img#logoCesnet {
 
 }
 
-.content > div > .panel > .panel-heading, .content > div > .panel > form >.panel-heading  {
+.content > div > .panel > .panel-heading, .content > div > .panel > form > .panel-heading {
     padding: 20px 10px 20px 55px;
     margin: 0;
     background-position: 15px center !important;
@@ -181,6 +214,7 @@ div.cesnet-left-block .btn-default {
     margin-top: 20px;
     width: 100% !important;
 }
+
 div.cesnet-left-block .btn-default img {
     max-width: 15px;
     margin-top: -3px;
@@ -238,6 +272,7 @@ div.cesnet-left-block .btn-default img {
     position: relative;
     overflow: hidden;
 }
+
 .btn-file input[type=file] {
     position: absolute;
     top: 0;
@@ -260,7 +295,7 @@ div.cesnet-left-block .btn-default img {
 }
 
 #left-addon {
-    width:100%;
+    width: 100%;
 }
 
 .detail-view-map {
