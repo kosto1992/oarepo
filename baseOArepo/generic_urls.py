@@ -18,12 +18,14 @@ def get_view(view_or_class, **kwargs):
 def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView,
                         extended_search=fedoralink.views.GenericIndexerView,
                         link=fedoralink.views.GenericLinkView,
+                        link_title=fedoralink.views.GenericLinkTitleView,
                         add=fedoralink.views.GenericDocumentCreate, detail=fedoralink.views.GenericDetailView,
                         download=fedoralink.views.GenericDownloadView, edit=fedoralink.views.GenericEditView,
                         search_base_template='baseOArepo/search_base.html',
                         search_list_item_template='baseOArepo/repo_fragments/list/dokument.html',
                         link_base_template='baseOArepo/link_base.html',
                         link_list_item_template='baseOArepo/repo_fragments/list/dokument.html',
+                        link_title_template='baseOArepo/link_title.html',
                         search_facets=(),
                         search_orderings=(
                                 ('title@en', _('Sort by title (asc)')),
@@ -40,6 +42,7 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
                         custom_patterns=None):
 
     fedoralink.views.ModelViewRegistry.register_view(model, 'link', app_name, 'link')
+    fedoralink.views.ModelViewRegistry.register_view(model, 'link_title', app_name, 'link_title')
     fedoralink.views.ModelViewRegistry.register_view(model, 'search', app_name, 'rozsirene_hledani')
     fedoralink.views.ModelViewRegistry.register_view(model, 'add', app_name, 'add')
     fedoralink.views.ModelViewRegistry.register_view(model, 'download', app_name, 'download')
@@ -58,6 +61,11 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
                      title=labels.get('search_title', 'Documents'),
                      create_button_title=labels.get('create_button_title', 'Create a New Document')),
             name='rozsirene_hledani'),
+        #    breadcrumb=_('Rozšířené hledání')),
+
+        url(r'^link-title/(?P<pk>[^/]+)$',
+            get_view(link_title, model=model, template_name=link_title_template, prefix=detail_prefix),
+            name='link_title'),
         #    breadcrumb=_('Rozšířené hledání')),
 
         url(r'^link(?P<parametry>.*)$',

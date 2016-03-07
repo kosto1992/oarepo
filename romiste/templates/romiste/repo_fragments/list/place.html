@@ -3,6 +3,6 @@
 {% load fedoralink_tags %}
 
 <div class="row document">
-   <div class="col-md-12"><h3 class="list-places-place">{{ item.title }}</h3>
-   {{ item.street|default_if_none:"" }} {{ item.house_number|default_if_none:"" }}, {{ item.town }}, {{ item.country }}</div>
+   <div class="col-md-12"><h3 class="list-places-place">{{ object.title }}</h3>
+   {{ object.street|default_if_none:"" }} {{ object.house_number|default_if_none:"" }}, {{ object.town }}, {{ object.country }}</div>
 </div>
