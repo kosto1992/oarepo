@@ -13,16 +13,31 @@
 {% block title %}OArepo - {{ object.title|rdf2lang }} {% endblock %}
 
 
+{#{% block left_block %}#}
+{#    {% with object.id|get_document as document %}#}
+{##}
+{#        {% if document.filename != None %}#}
+{#            {% include "baseOArepo/fragments/stahovani.html" %}#}
+{#        {% endif %}#}
+{#    {% endwith %}#}
+{#    #}
+{#    {% with index_path=appname|add:":index" %}#}
+{#    <a href="{% url index_path %}" class="btn btn-default"><img src="{% static "romiste/images/arrow_sans_left.png" %}" id="arrow-left"/>{% trans "Back to List" %}</a>#}
+{#    {%  endwith %}#}
+{#{% endblock %}#}
 {% block left_block %}
-    {% with object.id|get_document as document %}
+    {{ block.super }}
+    {% block left_addon %}
+        <a href="{{ object.photo }}"><img src="{{ object.photo }}" class="scientist-photo"/></a>
+    {% endblock %}
 
-        {% if document.filename != None %}
-            {% include "baseOArepo/fragments/stahovani.html" %}
-        {% endif %}
-    {% endwith %}
-    {% with index_path=appname|add:":index" %}
-    <a href="{% url index_path %}" class="btn btn-primary">{% trans "Show all" %}</a>
-    {%  endwith %}
+    {% block back_to_list %}
+        {% with index_path=appname|add:":index" %}
+            <a href="{% url index_path %}" class="btn btn-default"><img
+                    src="{% static "baseOArepo/images/arrow_sans_left.png" %}"
+                    id="arrow-left"/>{% trans "Back to List" %}</a>
+        {% endwith %}
+    {% endblock %}
 {% endblock %}
 
 {% block content %}
@@ -30,10 +45,7 @@
 
     <div class="container-fluid">
         {% block inner_content %}
-            <div class="col-md-4 pull-left">
-                <a href="{{ object.photo }}"><img src="{{ object.photo }}" class="scientist-photo"/></a>
-            </div>
-            <div class="informations col-md-8 pull-left">
+            <div class="informations">
                 {% for name, value, meta_name in object|get_fields %}
                     {% if meta_name != 'photo' %}
                         {% if value %}

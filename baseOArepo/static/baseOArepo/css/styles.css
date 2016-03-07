@@ -177,6 +177,15 @@ img#logoCesnet {
     color: #ffffff !important;
 }
 
+div.cesnet-left-block .btn-default {
+    margin-top: 20px;
+    width: 100% !important;
+}
+div.cesnet-left-block .btn-default img {
+    max-width: 15px;
+    margin-top: -3px;
+}
+
 /*---------- footer ----------*/
 .footer {
     height: 60px;
