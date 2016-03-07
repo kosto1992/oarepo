@@ -13,8 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
+from django.conf.urls import url, include, patterns
 from django.contrib import admin
+import baseOArepo.views
 
 import dcterms.urls
 
@@ -22,4 +23,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^dcterms/', include("dcterms.urls")),
     url(r'^romiste/', include("romiste.urls")),
+    url(r'^', include(patterns('',
+                               url('^$', baseOArepo.views.index, name="index")), namespace='oarepo'))
 ]
