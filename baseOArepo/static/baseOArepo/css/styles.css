@@ -169,22 +169,28 @@ div.repository-list-item {
 }
 
 div.repository .repository-header {
-    padding: 10px 10px 10px 20px;
+    padding-left: 20px;
     margin: 0;
     color: #ffffff !important;
     background: #b6265f url("../images/documents.png") no-repeat !important;
     background-size: 25px 25px !important;
     background-position: 90% center !important;
+    height: 80px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
 }
+
 div.repository-list-item .repository-detail {
     margin: 10px;
-    height: 250px;
     position: relative;
+    height: 250px;
 }
 div.repository-list-item .btn {
     width: 100%;
     position: absolute;
     bottom: 0;
+    left: 0;
 }
 
 /*---------- download-left-bar ------------*/

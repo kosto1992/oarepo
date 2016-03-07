@@ -22,22 +22,22 @@ class Video(DCObject):
         rdf_types = (CESNET.Video, )
 
 class ScientistPerson(IndexableFedoraObject):
-    orcid = IndexedTextField(CESNET.orcid, verbose_name=_('Orcid'))
+    orcid = IndexedTextField(CESNET.orcid, verbose_name=_('Orcid'), level=IndexedField.RECOMMENDED)
     firstName = IndexedTextField(FOAF.firstName, required=True, verbose_name=_('First name'))
     surname = IndexedTextField(FOAF.surname, required=True, verbose_name=_('Last name'))
     middlename = IndexedTextField(CESNET.middlename, verbose_name=_('Middle name(s)'))
     nickname = IndexedTextField(FOAF.nickname, verbose_name=_('Nickname'))
     titles = IndexedTextField(CESNET.titles, multi_valued=True, verbose_name=_('Titles ()'))       # TODO
     degrees = IndexedTextField(CESNET.degrees, multi_valued=True, verbose_name=_('Degrees ()'))    # TODO
-    gender = IndexedTextField(CESNET.gender, verbose_name=_('Gender'))
-    nationality = IndexedTextField(CESNET.nationality, verbose_name=_('Nationality'))
+    gender = IndexedTextField(CESNET.gender, verbose_name=_('Gender'), level=IndexedField.RECOMMENDED)
+    nationality = IndexedTextField(CESNET.nationality, verbose_name=_('Nationality'), level=IndexedField.RECOMMENDED)
     language = IndexedTextField(CESNET.language, verbose_name=_('Primary language'))
-    birthday = IndexedDateField(CESNET.birthday, verbose_name=_('Date of Birth'))
+    birthday = IndexedDateField(CESNET.birthday, verbose_name=_('Date of Birth'), level=IndexedField.RECOMMENDED)
     birthplace = IndexedLinkedField(CESNET.birthplace, 'romiste.Place', verbose_name=_('Birthplace'))
     deathday = IndexedDateField(CESNET.deathday, verbose_name=_('Date of Death'))
     deathplace = IndexedLinkedField(CESNET.birthplace, 'romiste.Place', verbose_name=_('Place of Death'))
     phone = IndexedTextField(CESNET.phone, multi_valued=True, verbose_name=_('Phone number'))
-    email = IndexedTextField(CESNET.email, multi_valued=True, verbose_name=_('Email'))
+    email = IndexedTextField(CESNET.email, multi_valued=True, verbose_name=_('Email'), level=IndexedField.RECOMMENDED)
     web = IndexedTextField(CESNET.web, multi_valued=True, verbose_name=_('Web page'))
     photo = IndexedBinaryField(CESNET.photo, Image, verbose_name=_('Photo'))
     notes = IndexedTextField(CESNET.notes, verbose_name=_('Notes'), attrs={"presentation": "textarea"})
