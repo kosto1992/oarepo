@@ -13,6 +13,7 @@ urlpatterns_romanyThing = repository_patterns(app_name='romiste_romanyThing', mo
                                               ),
                                               search_default_ordering='title',
                                               search_list_item_template='romiste/repo_fragments/list/recordings.html',
+                                              link_list_item_template='romiste/repo_fragments/link/recordings.html',
                                               add_parent_collection=lambda x: FedoraObject.objects.get(
                                                   pk='romiste/recordings'),
                                               attachment_model=None, )
@@ -24,6 +25,7 @@ urlpatterns_scientistPerson = repository_patterns(app_name='romiste_scientistPer
                                                       ('-surname', _('Sort by surname (desc)')),
                                                   ),
                                                   search_list_item_template='romiste/repo_fragments/list/dokument.html',
+                                                  link_list_item_template='romiste/repo_fragments/link/dokument.html',
                                                   detail_template_name='romiste/scientists/detail.html',
                                                   search_default_ordering='surname',
                                                   add_parent_collection=lambda x: FedoraObject.objects.get(
@@ -36,6 +38,7 @@ urlpatterns_romanyPerson = repository_patterns(app_name='romiste_romanyPerson', 
                                                    ('-surname', _('Sort by surname (desc)')),
                                                ),
                                                search_list_item_template='romiste/repo_fragments/list/dokument.html',
+                                               link_list_item_template='romiste/repo_fragments/link/dokument.html',
                                                detail_template_name='romiste/scientists/detail.html',
                                                search_default_ordering='surname',
                                                add_parent_collection=lambda x: FedoraObject.objects.get(
@@ -55,6 +58,7 @@ urlpatterns_place = repository_patterns(app_name='romiste_place', model=Place,
                                         search_default_ordering='title',
                                         add_parent_collection=lambda x: FedoraObject.objects.get(pk='romiste/places'),
                                         search_list_item_template='romiste/repo_fragments/list/place.html',
+                                        link_list_item_template='romiste/repo_fragments/link/place.html',
                                         attachment_model=None,
                                         labels={
                                             'search_title': _('Places'),

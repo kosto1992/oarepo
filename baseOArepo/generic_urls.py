@@ -17,10 +17,13 @@ def get_view(view_or_class, **kwargs):
 
 def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView,
                         extended_search=fedoralink.views.GenericIndexerView,
+                        link=fedoralink.views.GenericLinkView,
                         add=fedoralink.views.GenericDocumentCreate, detail=fedoralink.views.GenericDetailView,
                         download=fedoralink.views.GenericDownloadView, edit=fedoralink.views.GenericEditView,
                         search_base_template='baseOArepo/search_base.html',
                         search_list_item_template='baseOArepo/repo_fragments/list/dokument.html',
+                        link_base_template='baseOArepo/link_base.html',
+                        link_list_item_template='baseOArepo/repo_fragments/list/dokument.html',
                         search_facets=(),
                         search_orderings=(
                                 ('title@en', _('Sort by title (asc)')),
@@ -36,6 +39,7 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
                         labels = {},
                         custom_patterns=None):
 
+    fedoralink.views.ModelViewRegistry.register_view(model, 'link', app_name, 'link')
     fedoralink.views.ModelViewRegistry.register_view(model, 'search', app_name, 'rozsirene_hledani')
     fedoralink.views.ModelViewRegistry.register_view(model, 'add', app_name, 'add')
     fedoralink.views.ModelViewRegistry.register_view(model, 'download', app_name, 'download')
@@ -54,6 +58,15 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
                      title=labels.get('search_title', 'Documents'),
                      create_button_title=labels.get('create_button_title', 'Create a New Document')),
             name='rozsirene_hledani'),
+        #    breadcrumb=_('Rozšířené hledání')),
+
+        url(r'^link(?P<parametry>.*)$',
+            get_view(link, model=model, base_template=link_base_template,
+                     list_item_template=link_list_item_template, facets=search_facets,
+                     orderings=search_orderings,
+                     default_ordering=search_default_ordering,
+                     title=labels.get('search_title', 'Documents')),
+            name='link'),
         #    breadcrumb=_('Rozšířené hledání')),
 
         url('^add$', get_view(add, model=model, template_name=add_template_name,
