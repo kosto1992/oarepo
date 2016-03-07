@@ -5,8 +5,8 @@ from rdflib.namespace import FOAF
 
 from fedoralink.common_namespaces.dc import DCObject
 from fedoralink.fedorans import CESNET
-from fedoralink.indexer.fields import IndexedTextField, IndexedDateField, IndexedLinkedField, IndexedBinaryField, \
-    IndexedGPSField, IndexedField
+from fedoralink.indexer.fields import IndexedTextField, IndexedDateTimeField, IndexedLinkedField, IndexedBinaryField, \
+    IndexedGPSField, IndexedField, IndexedDateField
 from fedoralink.indexer.models import IndexableFedoraObject
 
 
@@ -100,7 +100,7 @@ class Place(IndexableFedoraObject):
 class Thing(IndexableFedoraObject):
     title = IndexedTextField(CESNET.title, required=True, verbose_name=_('Title'))
     creator = IndexedTextField(CESNET.creator, verbose_name=_('Creator'))
-    creation_date = IndexedDateField(CESNET.creation_date, verbose_name=_('Creation Date'))
+    creation_date = IndexedDateTimeField(CESNET.creation_date, verbose_name=_('Creation Date'))
     creation_place = IndexedTextField(CESNET.creation_place, verbose_name=_('Creation Place'))
     keyword = IndexedTextField(CESNET.keyword, multi_valued=True, verbose_name=_('Keywords'))
     description = IndexedTextField(CESNET.description, verbose_name=_('Description'),
@@ -113,7 +113,7 @@ class Thing(IndexableFedoraObject):
 class RomanyThing(IndexableFedoraObject):
     title = IndexedTextField(CESNET.title, required=True, verbose_name=_('Title'))
     creator = IndexedTextField(CESNET.creator, verbose_name=_('Creator'))
-    creation_date = IndexedDateField(CESNET.creation_date, verbose_name=_('Creation Date'))
+    creation_date = IndexedDateTimeField(CESNET.creation_date, verbose_name=_('Creation Date'))
     creation_place = IndexedTextField(CESNET.creation_place, verbose_name=_('Creation Place'))
     keyword = IndexedTextField(CESNET.keyword, multi_valued=True, verbose_name=_('Keywords'))
     description = IndexedTextField(CESNET.description, verbose_name=_('Description'),
@@ -139,8 +139,8 @@ class Tag(IndexableFedoraObject):
 
 class Event(IndexableFedoraObject):
     title = IndexedTextField(CESNET.title, required=True, verbose_name=_('Title'))
-    date_from = IndexedDateField(CESNET.date_from, verbose_name=_('Start'))
-    date_to = IndexedDateField(CESNET.date_to, verbose_name=_('End'))
+    date_from = IndexedDateTimeField(CESNET.date_from, verbose_name=_('Start'))
+    date_to = IndexedDateTimeField(CESNET.date_to, verbose_name=_('End'))
     place = IndexedTextField(CESNET.place, verbose_name=_('Place'))
     actor = IndexedTextField(CESNET.actor, verbose_name=_('Actor'))
     description = IndexedTextField(CESNET.description, verbose_name=_('Description'))
