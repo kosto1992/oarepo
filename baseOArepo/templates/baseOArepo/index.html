@@ -1,0 +1,40 @@
+{% extends "baseOArepo/base.html" %}
+{% load i18n %}
+{% load l10n %}
+{% load fedoralink_tags %}
+{% load dcterms_dokumenty %}
+
+{% block title %}OArepo - {% trans "Repositories" %} {% endblock %}
+
+
+{% block left_block %}
+
+{% endblock %}
+
+{% block content %}
+    <h1>{% block h1 %}OArepo - {% trans "Repositories" %}{% endblock %}</h1>
+
+    <div class="container-fluid list-repositories">
+        {% block inner_content %}
+            <div class="repository pull-left col-md-4">
+                <div class="repository-list-item pull-left">
+                    <div class="repository-header"><h4>{% trans "DCterms" %}</h4></div>
+                    <div class="repository-detail">
+                        <a href="{% url 'dcterms:index' %}"
+                           class="btn btn-default">{% trans "Show" %}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="repository pull-left col-md-4">
+                <div class="repository-list-item">
+                    <div class="repository-header"><h4>{% trans "Romiste" %}</h4></div>
+                    <div class="repository-detail">
+                        <a href="{% url 'romiste:index' %}" class="btn btn-default">{% trans "Show" %}</a>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}
+
+
