@@ -1,0 +1,41 @@
+{% extends "baseOArepo/base_no_decoration.html" %}
+
+{% load i18n %}
+
+{% block title %}{{ title }} - {% endblock %}
+
+
+{% block left_block %}
+    <div class="">
+        <form>
+            <div class="row">
+                <div class="col-sm-6">
+                    {% block search_bar %}
+                    {% endblock %}
+                </div>
+                <div class="col-sm-4">
+                    {% block ordering %}
+                    {% endblock %}
+                </div>
+                <div class="col-sm-2">
+                    <input type="submit" name="search" value="Search" class="btn btn-default btn-block">
+                </div>
+            </div>
+
+            <div style="display: hidden">
+                {% block facets %}
+                {% endblock %}
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container-fluid" style="margin-top: -30px;">
+        {% block search_results %}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+
