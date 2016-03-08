@@ -4,6 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 from rdflib.namespace import FOAF
 
 from fedoralink.common_namespaces.dc import DCObject
+from fedoralink.controlled_terminologies.languages import LANGUAGES
+from fedoralink.controlled_terminologies.nationalities import NATIONALITIES
 from fedoralink.fedorans import CESNET
 from fedoralink.indexer.fields import IndexedTextField, IndexedDateTimeField, IndexedLinkedField, IndexedBinaryField, \
     IndexedGPSField, IndexedField, IndexedDateField
@@ -21,6 +23,7 @@ class Video(DCObject):
     class Meta:
         rdf_types = (CESNET.Video, )
 
+
 class ScientistPerson(IndexableFedoraObject):
     orcid = IndexedTextField(CESNET.orcid, verbose_name=_('Orcid'), level=IndexedField.RECOMMENDED)
     firstName = IndexedTextField(FOAF.firstName, required=True, verbose_name=_('First name'))
@@ -30,8 +33,10 @@ class ScientistPerson(IndexableFedoraObject):
     titles = IndexedTextField(CESNET.titles, multi_valued=True, verbose_name=_('Titles ()'))       # TODO
     degrees = IndexedTextField(CESNET.degrees, multi_valued=True, verbose_name=_('Degrees ()'))    # TODO
     gender = IndexedTextField(CESNET.gender, verbose_name=_('Gender'), level=IndexedField.RECOMMENDED)
-    nationality = IndexedTextField(CESNET.nationality, verbose_name=_('Nationality'), level=IndexedField.RECOMMENDED)
-    language = IndexedTextField(CESNET.language, verbose_name=_('Primary language'))
+    nationality = IndexedTextField(CESNET.nationality, verbose_name=_('Nationality'), level=IndexedField.RECOMMENDED,
+                                   choices=NATIONALITIES)
+    language = IndexedTextField(CESNET.language, verbose_name=_('Primary language'),
+                                choices=LANGUAGES)
     birthday = IndexedDateField(CESNET.birthday, verbose_name=_('Date of Birth'), level=IndexedField.RECOMMENDED)
     birthplace = IndexedLinkedField(CESNET.birthplace, 'romiste.Place', verbose_name=_('Birthplace'))
     deathday = IndexedDateField(CESNET.deathday, verbose_name=_('Date of Death'))
