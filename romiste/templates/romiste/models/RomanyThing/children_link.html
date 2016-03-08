@@ -1,0 +1,10 @@
+{% load fedoralink_tags %}
+{% load i18n %}
+{% load l10n %}
+
+{% for link in links %}
+<div class="row document">
+    <div class="col-md-12"><a href="{{ link.id }}">
+        <h3>{{ link.filename }}</h3></a></div>
+</div>
+{% endfor %}
