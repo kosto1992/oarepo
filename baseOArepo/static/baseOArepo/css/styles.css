@@ -22,6 +22,10 @@
     color: #ffffff !important;
 }
 
+.navbar-brand {
+    height: auto !important;
+}
+
 .navbar-toggle {
     background-color: #ffffff;
 }
@@ -66,10 +70,11 @@ div.content {
 img#logoCesnet {
     margin-top: 40px;
     margin-bottom: 40px;
+    max-width: 100%;
 }
 
 .content h1 {
-    height: 65px;
+    min-height: 65px;
     margin-top: 40px;
     margin-bottom: 20px;
     color: #4c4d4f;
@@ -160,14 +165,6 @@ div.repository {
     padding: 0;
 }
 
-div.repository-list-item {
-    width: 90%;
-    border: 1px solid #bcbdc0;
-    padding: 0;
-    margin: auto;
-    margin-bottom: 20px;
-}
-
 div.repository .repository-header {
     padding-left: 20px;
     margin: 0;
@@ -181,11 +178,24 @@ div.repository .repository-header {
     align-items: center;
 }
 
+div.repository .repository-header h4 {
+    max-width: 80%;
+}
+
 div.repository-list-item .repository-detail {
     margin: 10px;
     position: relative;
     height: 250px;
+    overflow: hidden;
 }
+
+div.repository-list-item {
+    border: 1px solid #bcbdc0;
+    padding: 0;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
 div.repository-list-item .btn {
     width: 100%;
     position: absolute;
@@ -244,21 +254,6 @@ div.cesnet-left-block .btn-default img {
     color: #939598;
 }
 
-@media only screen and (max-width: 991px) {
-
-    .content > .col-md-3 {
-        padding-left: 15px !important;
-    }
-
-}
-
-@media all and (max-width: 515px) {
-    /*------- body ---------*/
-    body {
-        padding-top: 80px;
-    }
-}
-
 .left-search-bar .panel-heading.search {
     padding-top: 5px !important;
     padding-bottom: 5px !important;
@@ -315,4 +310,42 @@ div.cesnet-left-block .btn-default img {
 
 .list-places-place {
     margin-bottom: 5px !important;
+}
+
+/*-------------media---------*/
+
+@media only screen and (max-width: 991px) {
+
+    .content > .col-md-3 {
+        padding-left: 15px !important;
+    }
+
+}
+
+@media all and (max-width: 515px) {
+    /*------- body ---------*/
+    body {
+        padding-top: 80px;
+    }
+
+    img#logoCesnet {
+        margin-top: 100px;
+    }
+
+    .repository .pull-left, .repository .pull-right {
+        float: none !important;
+    }
+
+    div.repository .repository-header {
+        height: auto;
+        background-image: none !important;
+    }
+}
+
+@media all and (min-width: 992px) {
+
+    div.repository-list-item {
+        width: 90%;
+        margin: auto;
+    }
 }
