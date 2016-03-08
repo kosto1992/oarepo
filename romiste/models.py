@@ -35,7 +35,7 @@ class ScientistPerson(IndexableFedoraObject):
     birthday = IndexedDateField(CESNET.birthday, verbose_name=_('Date of Birth'), level=IndexedField.RECOMMENDED)
     birthplace = IndexedLinkedField(CESNET.birthplace, 'romiste.Place', verbose_name=_('Birthplace'))
     deathday = IndexedDateField(CESNET.deathday, verbose_name=_('Date of Death'))
-    deathplace = IndexedLinkedField(CESNET.birthplace, 'romiste.Place', verbose_name=_('Place of Death'))
+    deathplace = IndexedLinkedField(CESNET.deathplace, 'romiste.Place', verbose_name=_('Place of Death'))
     phone = IndexedTextField(CESNET.phone, multi_valued=True, verbose_name=_('Phone number'))
     email = IndexedTextField(CESNET.email, multi_valued=True, verbose_name=_('Email'), level=IndexedField.RECOMMENDED)
     web = IndexedTextField(CESNET.web, multi_valued=True, verbose_name=_('Web page'))
