@@ -21,7 +21,7 @@
                     <div class="repository-header"><h4>{% trans "Scientists" %}</h4></div>
                     <div class="repository-detail">
                         {% for scientist in scientists %}
-                            <a href="{{ scientist.id|id_from_path }}">{{ scientist.firstName }} {{ scientist.surname }}</a><br>
+                            <a href="{% url 'romiste_scientistPerson:index' %}{{ scientist.id|id_from_path }}">{{ scientist.firstName }} {{ scientist.surname }}</a><br>
                         {% endfor %}
                         <a href="{% url 'romiste_scientistPerson:index' %}"
                            class="btn btn-default">{% trans "Show" %}</a>
@@ -33,7 +33,7 @@
                     <div class="repository-header"><h4>{% trans "Respondents" %}</h4></div>
                     <div class="repository-detail">
                         {% for respondent in respondents %}
-                            <a href="{{ respondent.id|id_from_path }}">{{ respondent.firstName }} {{ respondent.surname }}</a><br>
+                            <a href="{% url 'romiste_romanyPerson:index' %}{{ respondent.id|id_from_path }}">{{ respondent.firstName }} {{ respondent.surname }}</a><br>
                         {% endfor %}
                         <a href="{% url 'romiste_romanyPerson:index' %}" class="btn btn-default">{% trans "Show" %}</a>
                     </div>
@@ -44,7 +44,7 @@
                     <div class="repository-header"><h4>{% trans "Places" %}</h4></div>
                     <div class="repository-detail">
                         {% for place in places %}
-                            <a href="{{ place.id|id_from_path }}">{{ place.title }}</a><br>
+                            <a href="{% url 'romiste_place:index' %}{{ place.id|id_from_path }}">{{ place.title }}</a><br>
                         {% endfor %}
                         <a href="{% url 'romiste_place:index' %}" class="btn btn-default">{% trans "Show" %}</a>
                     </div>
@@ -55,7 +55,7 @@
                     <div class="repository-header"><h4>{% trans "Recordings" %}</h4></div>
                     <div class="repository-detail">
                         {% for recording in recordings %}
-                            <a href="{{ recording.id|id_from_path }}">{{ recording.title }}</a><br>
+                            <a href="{% url 'romiste_romanyThing:index' %}{{ recording.id|id_from_path }}">{{ recording.title }}</a><br>
                         {% endfor %}
                         <a href="{% url 'romiste_romanyThing:index' %}" class="btn btn-default">{% trans "Show" %}</a>
                     </div>
