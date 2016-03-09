@@ -1,0 +1,9 @@
+{% load i18n %}
+{% load l10n %}
+{% load fedoralink_tags %}
+
+<div class="row document">
+   <div class="col-md-12"><a href="{{ item.id|id_from_path }}"> <h3>{{ item.label|rdf2lang|safe }}</h3></a></div>
+   <div class="col-md-12">{% if item.initial.value == 'true' %}Initial state{% if item.comment %}. {% endif %}{% endif %}
+   <span class="text-muted">{{ item.comment|default_if_none:'' }}</span></div>
+</div>

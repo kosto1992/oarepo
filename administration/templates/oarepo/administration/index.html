@@ -1,0 +1,66 @@
+{% extends "baseOArepo/base.html" %}
+{% load i18n %}
+{% load l10n %}
+{% load fedoralink_tags %}
+{% load dcterms_dokumenty %}
+
+{% block title %}Administration - {% endblock %}
+
+{% block head %}
+    {{ block.super }}
+    <style>
+        .cesnet-content {
+            min-height: 0px !important;
+        }
+    </style>
+{% endblock %}
+
+{% block left_block %}
+
+{% endblock %}
+
+<h1>{% block h1 %}Administration{% endblock %}</h1>
+
+
+{% block widecontent %}
+    <div class="container-fluid list-repositories">
+        <div class="repository pull-left col-xs-12 col-sm-6 col-md-3">
+            <div class="repository-list-item pull-left">
+                <div class="repository-header repository-header-disabled"><h4>{% trans "Users, Groups and Access Control" %}</h4></div>
+                <div class="repository-detail-small text-muted">
+                    Definition of users, groups and access control. Not implemented yet, use REST api for direct
+                    manipulation.
+                    <a href="{% url 'dcterms:index' %}"
+                       class="btn btn-default">{% trans "Show" %}</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="repository pull-left col-xs-12 col-sm-6 col-md-3">
+            <div class="repository-list-item pull-left">
+                <div class="repository-header"><h4>{% trans "Data States and Approval Processes" %}</h4></div>
+                <div class="repository-detail-small">
+                    Definition of document states, transitions between them, approval process and associated actions.
+                    <a href="{% url 'state_engine:index' %}"
+                       class="btn btn-default">{% trans "Show" %}</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="repository pull-left col-xs-12 col-sm-6 col-md-3">
+            <div class="repository-list-item pull-left">
+                <div class="repository-header repository-header-disabled"><h4>{% trans "Data Types and Collections" %}</h4></div>
+                <div class="repository-detail-small text-muted">
+                    Definitions of data types and look and feel of collections. Currently defined in python,
+                    support for web definitions is under construction.
+                    <a href="{% url 'dcterms:index' %}"
+                       class="btn btn-default btn-disabled">{% trans "Show" %}</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+

@@ -1,0 +1,48 @@
+{% extends "baseOArepo/base.html" %}
+{% load i18n %}
+{% load l10n %}
+{% load fedoralink_tags %}
+{% load dcterms_dokumenty %}
+
+{% block title %}Data States and Approval Processes - {% endblock %}
+
+{% block head %}
+    {{ block.super }}
+    <style>
+        .cesnet-content {
+            min-height: 0px !important;
+        }
+    </style>
+{% endblock %}
+
+{% block left_block %}
+
+{% endblock %}
+
+<h1>{% block h1 %}Data States and Approval Processes{% endblock %}</h1>
+
+
+{% block inner_content %}
+
+    <h3>Romani Studies Data</h3>
+
+    <ul style="line-height: 200%;">
+        <li>
+            <a href="{% url "state_engine:index_romiste" %}">Recording approvement process</a>
+        </li>
+        <li>
+            Respondent approvement process
+        </li>
+    </ul>
+
+    <h3>Organic Chemistry Data</h3>
+
+    <ul style="line-height: 200%;">
+        <li>
+            Spectroscopic data approvement process
+        </li>
+    </ul>
+
+{% endblock %}
+
+

@@ -21,3 +21,6 @@ class Command(BaseCommand):
         call_command('config_repository_index_elasticsearch', 'romiste.models.RomanyThing')
         call_command('config_repository_index_elasticsearch', 'romiste.models.Tag')
         call_command('config_repository_index_elasticsearch', 'romiste.models.Event')
+        call_command('config_repository_index_elasticsearch', 'state_engine.models.StateCollection')
+        call_command('config_repository_index_elasticsearch', 'state_engine.models.State')
+        call_command('config_repository_index_elasticsearch', 'state_engine.models.Transition')

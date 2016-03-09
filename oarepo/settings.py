@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'bootstrap3',
     'changeRDFtype',
     'romiste',
+    'fedoralink.common_namespaces.web_acl',
+    'state_engine',
+    'administration'
 ]
 
 MIDDLEWARE_CLASSES = [
