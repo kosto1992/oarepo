@@ -1,4 +1,4 @@
-{% extends "baseOArepo/base.html" %}
+{% extends "baseOArepo/detail.html" %}
 {% load i18n %}
 {% load l10n %}
 {% load fedoralink_tags %}
@@ -8,14 +8,15 @@
 
 {% block title %}{{ object.title|rdf2lang }} - {% endblock %}
 
-
 {% block left_block %}
+
     {% with object.id|get_document as document %}
 
         {% if document.filename != None %}
             {% include "baseOArepo/fragments/stahovani.html" %}
         {% endif %}
     {% endwith %}
+
     {%  if object.video %}
         <div class="panel panel-default">
             <div class="panel-heading download">
@@ -29,53 +30,26 @@
         </div>
     {% endif %}
 
-    {% block left_addon %}
-        <div id="left-addon"></div>
-    {% endblock %}
-
-    {% block back_to_list %}
-        {% with index_path=appname|add:":index" %}
-            <a href="{% url index_path %}" class="btn btn-default"><img
-                    src="{% static "baseOArepo/images/arrow_sans_left.png" %}"
-                    id="arrow-left"/>{% trans "Back to List" %}</a>
-        {% endwith %}
-    {% endblock %}
+    {{ block.super }}
 
 {% endblock %}
 
-{% block content %}
-    <h1>{% block h1 %}{{ object.title|rdf2lang }}{% endblock %}</h1>
+{% block h1 %}{{ object.title|rdf2lang }}{% endblock %}
 
-    <div class="container-fluid">
-        {% block inner_content %}
+{% block detail_fields %}
 
-            {% for name, value, meta_name in object|get_fields %}
-                {% if meta_name != 'video' %}
-                    {% if value %}
-                        {% render_field_view object meta_name name value %}
-                    {% endif %}
-                {% endif %}
+    {% with excluded_fields='video' %}
+        {{ block.super }}
+    {% endwith %}
 
-            {% endfor %}
+    {%  if object.video %}
+        <div class="video">
+            <video width="500" controls>
+                <source src="{{ object.video }}" type="video/webm">
+            </video>
+        </div>
+    {% endif %}
 
-            {%  if object.video %}
-                <div class="video">
-                    <video width="500" controls>
-                        <source src="{{ object.video }}" type="video/webm">
-                    </video>
-                </div>
-            {% endif %}
-
-            <div class="childrens">
-                {% render_links object 'children' %}
-            </div>
-
-            {% with edit_path=appname|add:":edit" %}
-                <a href="{% url edit_path pk=object.id|id_from_path %}" class="btn btn-primary">{% trans "Edit" %}</a>
-            {% endwith %}
-
-        {% endblock %}
-    </div>
 {% endblock %}
 
 

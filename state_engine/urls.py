@@ -23,6 +23,7 @@ urlpatterns_state = repository_patterns(app_name='state_engine_states', model=St
 
 urlpatterns_transition = repository_patterns(app_name='state_engine_transitions', model=Transition,
                                              search_list_item_template='state_engine/fragments/search_transition.html',
+                                             link_list_item_template='state_engine/fragments/search_transition.html',
                                              add_parent_collection=lambda x: FedoraObject.objects.get(
                                                      pk='states/transitions'),
                                              search_orderings=(

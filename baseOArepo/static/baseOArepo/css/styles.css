@@ -334,6 +334,12 @@ div.cesnet-left-block .btn-default img {
     color: #337ab7;
 }
 
+.panel-heading {
+    padding-top: 5px !important;
+    padding-bottom: 0px !important;
+    padding-left: 15px !important;
+}
+
 /*-------------media---------*/
 
 @media only screen and (max-width: 991px) {
