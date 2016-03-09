@@ -1,3 +1,4 @@
+from django.db.models.signals import pre_save
 from django.utils.translation import ugettext_lazy as _
 
 from fedoralink.common_namespaces.dc import DCObject
@@ -55,3 +56,4 @@ class Transition(IndexableFedoraObject):
 
     class Meta:
         rdf_types = (CESNET_STATE.Transition, )
+

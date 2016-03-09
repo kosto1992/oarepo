@@ -16,16 +16,18 @@
             {% include "baseOArepo/fragments/stahovani.html" %}
         {% endif %}
     {% endwith %}
-    <div class="panel panel-default">
-        <div class="panel-heading download">
-            <h4><i class="fa fa-fw fa-download"></i> {% trans "Download video" %}</h4>
+    {%  if object.video %}
+        <div class="panel panel-default">
+            <div class="panel-heading download">
+                <h4><i class="fa fa-fw fa-download"></i> {% trans "Download video" %}</h4>
+            </div>
+            <div class="panel-body">
+                <ul class="download_documents">
+                                <li><a href="{{ object.video }}">{{ object.video }}</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="panel-body">
-            <ul class="download_documents">
-                            <li><a href="{{ object.video }}">{{ object.video }}</a></li>
-            </ul>
-        </div>
-    </div>
+    {% endif %}
 
     {% block left_addon %}
         <div id="left-addon"></div>
@@ -56,12 +58,13 @@
 
             {% endfor %}
 
-            <div class="video">
-            <video width="500" controls>
-                <source src="{{ object.video }}" type="video/webm">
-            </video>
-
-            </div>
+            {%  if object.video %}
+                <div class="video">
+                    <video width="500" controls>
+                        <source src="{{ object.video }}" type="video/webm">
+                    </video>
+                </div>
+            {% endif %}
 
             <div class="childrens">
                 {% render_links object 'children' %}

@@ -132,7 +132,8 @@ class RomanyThing(IndexableFedoraObject):
                                        attrs={'presentation': 'textarea'})
 
     class Meta:
-        rdf_types = (CESNET.RomanyThing, )
+        rdf_types        = (CESNET.RomanyThing, )
+        state_collection = 'states/states'
 
 
 class Tag(IndexableFedoraObject):
