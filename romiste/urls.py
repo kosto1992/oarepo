@@ -6,7 +6,10 @@ from fedoralink.models import FedoraObject
 from romiste.models import ScientistPerson, RomanyThing, Place, RomanyPerson
 import romiste.view
 
+import state_engine.views
+
 urlpatterns_romanyThing = repository_patterns(app_name='romiste_romanyThing', model=RomanyThing,
+                                              change_state=state_engine.views.GenericChangeStateView,
                                               search_facets=[],
                                               search_orderings=(
                                                   ('title', _('Sort by title')),

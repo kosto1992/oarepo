@@ -21,6 +21,7 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
                         link_title=fedoralink.views.GenericLinkTitleView,
                         add=fedoralink.views.GenericDocumentCreate, detail=fedoralink.views.GenericDetailView,
                         download=fedoralink.views.GenericDownloadView, edit=fedoralink.views.GenericEditView,
+                        change_state=fedoralink.views.GenericChangeStateView,
                         search_base_template='baseOArepo/search_base.html',
                         search_list_item_template='baseOArepo/repo_fragments/list/dokument.html',
                         link_base_template='baseOArepo/link_base.html',
@@ -94,6 +95,10 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
                      success_url_param_names=edit_success_url_param_names,
                      prefix=edit_prefix, title=labels.get('edit_title', 'Edit Document')),
             name="edit"),
+
+        url('^change_state/(?P<pk>[^/]+)$',
+            get_view(change_state), name="change_state"),
+
         url('^(?P<pk>[^/]+)$',
             get_view(detail, template_name=detail_template_name,
                      prefix=detail_prefix), name="detail"),

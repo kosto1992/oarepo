@@ -32,7 +32,15 @@
                         {% for state in states %}
                             <h4>{{ state.label }}</h4>
                             {%  for transition in state|fedora_transitions %}
-                                <button class="btn btn-default btn-block">{{ transition.label }}</button>
+                                {% with change_state_url=request.resolver_match.namespaces.0|add:':change_state' %}
+                                    <form action="{% url change_state_url pk=object.id|id_from_path %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="state" value="{{ state.id }}">
+                                        <input type="hidden" name="transition" value="{{ transition.id }}">
+                                        <button class="btn btn-default btn-block" type="submit"
+                                                name="change_state">{{ transition.label }}</button>
+                                    </form>
+                                {% endwith %}
                             {% endfor %}
                         {% endfor %}
                     </div>
