@@ -30,8 +30,8 @@ class ScientistPerson(IndexableFedoraObject):
     surname = IndexedTextField(FOAF.surname, required=True, verbose_name=_('Last name'))
     middlename = IndexedTextField(CESNET.middlename, verbose_name=_('Middle name(s)'))
     nickname = IndexedTextField(FOAF.nickname, verbose_name=_('Nickname'))
-    titles = IndexedTextField(CESNET.titles, multi_valued=True, verbose_name=_('Titles ()'))       # TODO
-    degrees = IndexedTextField(CESNET.degrees, multi_valued=True, verbose_name=_('Degrees ()'))    # TODO
+    # titles = IndexedTextField(CESNET.titles, multi_valued=True, verbose_name=_('Titles ()'))       # TODO
+    # degrees = IndexedTextField(CESNET.degrees, multi_valued=True, verbose_name=_('Degrees ()'))    # TODO
     gender = IndexedTextField(CESNET.gender, verbose_name=_('Gender'), level=IndexedField.RECOMMENDED)
     nationality = IndexedTextField(CESNET.nationality, verbose_name=_('Nationality'), level=IndexedField.RECOMMENDED,
                                    choices=NATIONALITIES)
@@ -57,8 +57,8 @@ class RomanyPerson(IndexableFedoraObject):
     surname = IndexedTextField(FOAF.surname, required=True, verbose_name=_('Surname'))
     middlename = IndexedTextField(CESNET.middlename, verbose_name=_('Middle name'))
     nickname = IndexedTextField(FOAF.nickname, verbose_name=_('Nickname'))
-    titles = IndexedTextField(CESNET.titles, multi_valued=True, verbose_name=_('Titles ()'))       # TODO
-    degrees = IndexedTextField(CESNET.degrees, multi_valued=True, verbose_name=_('Degrees ()'))    # TODO
+    # titles = IndexedTextField(CESNET.titles, multi_valued=True, verbose_name=_('Titles ()'))       # TODO
+    # degrees = IndexedTextField(CESNET.degrees, multi_valued=True, verbose_name=_('Degrees ()'))    # TODO
     gender = IndexedTextField(CESNET.gender, verbose_name=_('Gender'))
     nationality = IndexedTextField(CESNET.nationality, verbose_name=_('Nationality'))
     language = IndexedTextField(CESNET.language, multi_valued=True, verbose_name=_('Primary language'))
@@ -124,7 +124,7 @@ class RomanyThing(IndexableFedoraObject):
     description = IndexedTextField(CESNET.description, verbose_name=_('Description'),
                                    attrs={'presentation': 'textarea'})
 
-    respondent = IndexedTextField(CESNET.respondent, verbose_name=_('Respondent'))
+    respondent = IndexedLinkedField(CESNET.respondent, RomanyPerson, verbose_name=_('Respondent'))
     circumstance = IndexedTextField(CESNET.circumstance, verbose_name=_('Circumstance'))
     video = IndexedBinaryField(CESNET.video, Video, verbose_name=_('Record'))
     record_type = IndexedTextField(CESNET.record_type, verbose_name=_('Recording Type'))

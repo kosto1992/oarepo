@@ -121,6 +121,10 @@ img#logoCesnet {
     position: initial !important;
 }
 
+.left-search-bar h4, .download h4 {
+    margin-left: 30px;
+}
+
 .left-search-bar .input-group-btn {
     position: absolute !important;
     bottom: 10px;
@@ -375,5 +379,25 @@ div.cesnet-left-block .btn-default img {
     div.repository-list-item {
         width: 90%;
         margin: auto;
+        height: 350px;
+        display: table;
+    }
+    div.repository .repository-header {
+        display: table-row;
+        height: 0;
+    }
+    div.repository .repository-header h4 {
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    div.repository-list-item .repository-detail {
+        margin: 0 auto;
+        height: 100%;
+        width: 90%;
+        display: block;
+    }
+    div.repository-list-item .btn {
+        bottom: 10px;
     }
 }

@@ -18,6 +18,8 @@ class ApplicationConfig(AppConfig):
 
 @receiver(pre_save)
 def state_callback(sender, instance, *args, **kwargs):
+    if not hasattr(sender,"_meta"):
+        return
     if not hasattr(sender._meta, 'state_collection'):
         return
 

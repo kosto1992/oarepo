@@ -14,6 +14,7 @@ class Command(BaseCommand):
         call_command('config_repository_index_elasticsearch', 'fedoralink.common_namespaces.dc.DCObject')
         call_command('config_repository_index_elasticsearch', 'dcterms.models.DocumentAttachment')
         call_command('config_repository_index_elasticsearch', 'romiste.models.Image')
+        call_command('config_repository_index_elasticsearch', 'romiste.models.Video')
         call_command('config_repository_index_elasticsearch', 'romiste.models.ScientistPerson')
         call_command('config_repository_index_elasticsearch', 'romiste.models.RomanyPerson')
         call_command('config_repository_index_elasticsearch', 'romiste.models.Place')
