@@ -78,7 +78,7 @@ def repository_patterns(app_name, model, index=fedoralink.views.GenericIndexView
             name='link'),
         #    breadcrumb=_('Rozšířené hledání')),
 
-        url('^add$', get_view(add, model=model, template_name=add_template_name,
+        url('^add/(?P<pk>[^/]+)*$', get_view(add, model=model, template_name=add_template_name,
                               success_url=app_name + ":" + add_success_url,
                               success_url_param_names=add_success_url_param_names,
                               parent_collection=add_parent_collection,

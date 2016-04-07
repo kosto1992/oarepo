@@ -25,3 +25,6 @@ class Command(BaseCommand):
         call_command('config_repository_index_elasticsearch', 'state_engine.models.StateCollection')
         call_command('config_repository_index_elasticsearch', 'state_engine.models.State')
         call_command('config_repository_index_elasticsearch', 'state_engine.models.Transition')
+        call_command('config_repository_index_elasticsearch', 'fedoralink_ui.models.TypeCollection')
+        call_command('config_repository_index_elasticsearch', 'fedoralink_ui.models.Type')
+        call_command('config_repository_index_elasticsearch', 'fedoralink_ui.models.Template')

@@ -23,7 +23,7 @@
 
     {% block state %}
         {% with states=object|fedora_states %}
-            {%  if states %}
+            {% if states %}
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4><span class="glyphicon glyphicon-cog"></span> {% trans "State" %}</h4>
@@ -31,7 +31,7 @@
                     <div class="panel-body">
                         {% for state in states %}
                             <h4>{{ state.label }}</h4>
-                            {%  for transition in state|fedora_transitions %}
+                            {% for transition in state|fedora_transitions %}
                                 {% with change_state_url=request.resolver_match.namespaces.0|add:':change_state' %}
                                     <form action="{% url change_state_url pk=object.id|id_from_path %}" method="post">
                                         {% csrf_token %}
@@ -46,6 +46,12 @@
                     </div>
                 </div>
             {% endif %}
+        {% endwith %}
+    {% endblock %}
+
+    {% block add %}
+        {% with add_path=appname|add:":add" %}
+            <a href="{% url add_path pk=object.id|id_from_path %}" class="btn btn-primary">{% trans "Add" %}</a>
         {% endwith %}
     {% endblock %}
 
@@ -64,7 +70,7 @@
 
     <div class="container-fluid">
         {% block inner_content %}
-            {%  block detail_fields %}
+            {% block detail_fields %}
                 {% for name, value, meta_name in object|get_fields %}
                     {% if not meta_name in excluded_fields|split_to_array %}
                         {% if value %}

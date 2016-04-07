@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'bootstrap_pagination',
     'bootstrap3',
     'changeRDFtype',
+    'createTypes',
     'romiste',
     'fedoralink.common_namespaces.web_acl',
     'state_engine',
