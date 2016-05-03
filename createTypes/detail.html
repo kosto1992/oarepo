@@ -1,0 +1,23 @@
+{% load i18n %}
+{% load l10n %}
+{% load fedoralink_tags %}
+{% block inner_content %}
+{% block detail_fields %}
+{% for name, value, meta_name in object|get_fields %}
+{% if not meta_name in excluded_fields|split_to_array %}
+{% if value %}
+{% render_field_view object meta_name name value %}
+{% endif %}
+{% endif %}
+{% endfor %}
+{% endblock %}
+
+<div class="childrens">
+    {% render_links object 'children' %}
+</div>
+
+{% with edit_path=appname|add:":edit" %}
+<a href="{% url edit_path pk=object.id|id_from_path %}" class="btn btn-primary">{% trans "Edit" %}</a>
+{% endwith %}
+
+{% endblock %}

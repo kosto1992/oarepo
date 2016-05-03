@@ -1,5 +1,10 @@
 import django
 
+from rdflib.namespace import DC
+
+from fedoralink.common_namespaces.dc import DCObject
+from fedoralink.utils import TypedStream
+
 django.setup()
 
 import logging
@@ -12,39 +17,40 @@ from fedoralink_ui.models import Type, Template
 
 
 class createType:
-    def createTemplate(self):
+    def createTemplate(self, pk, type, file):
         model = Template
-        parent = FedoraObject.objects.get(pk='types')
-        templateObject = parent.create_child('', flavour=model)
+        parent = FedoraObject.objects.get(pk=pk)
+        templateObject = parent.create_child(type, flavour=model)
         templateObject.save()
-        templateObject.label = 'ViewTemplate'
-        f = open('../romiste/templates/romiste/scientists/detail.html')
+        templateObject.label = type+'Template'
+        stream = TypedStream(file, filename='romiste_scientists_'+type+'.html')
 
-        templateObject.set_template_bitstream(f)
+        templateObject.set_template_bitstream(stream)
 
         templateObject.save()
-        return templateObject.id
+        return templateObject
 
-    def createType(self, templateId):
+    def createType(self):
         model = Type
-        parent = FedoraObject.objects.get(pk='types')
-        typeObject = parent.create_child('', flavour=model)
+        parent = FedoraObject.objects.get(pk='type')
+        typeObject = parent.create_child('edit', flavour=model)
         typeObject.save()
+        #typeObject = FedoraObject.objects.get(pk='type/64/94/59/35/64945935-9644-4d4e-a8da-bde34891e9b1')
 
         typeObject.label = 'TestType'
         typeObject.controller = 'Controller'
-        template = FedoraObject.objects.get(pk=templateId)
+        typeObject.rdf_types = [DC.Object]
+        template = self.createTemplate(pk=typeObject.id, type='view', file='./detail.html')
         typeObject.templates_view = template.id
+        typeObject.save()
+
+        template = self.createTemplate(pk=typeObject.id, type='edit', file='./edit.html')
+        typeObject.templates_edit = template.id
         typeObject.save()
 
         print(typeObject.pk)
 
-        objectb = Type.objects.get(pk=typeObject.pk)
-
-        print(objectb.label)
-
         print('Object %s should be saved', typeObject.label)
 
 create = createType()
-template = create.createTemplate()
-create.createType(templateId=template)
+create.createType()
