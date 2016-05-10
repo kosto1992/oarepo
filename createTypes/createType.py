@@ -13,7 +13,7 @@ for handler in logging.root.handlers[:]:
 logging.basicConfig(level=logging.INFO)
 
 from fedoralink.models import FedoraObject
-from fedoralink_ui.models import Type, Template
+from fedoralink_ui.models import ResourceType, Template
 
 
 class createType:
@@ -31,7 +31,7 @@ class createType:
         return templateObject
 
     def createType(self):
-        model = Type
+        model = ResourceType
         parent = FedoraObject.objects.get(pk='type')
         typeObject = parent.create_child('edit', flavour=model)
         typeObject.save()

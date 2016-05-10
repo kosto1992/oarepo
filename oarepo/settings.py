@@ -39,16 +39,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fedoralink',
+    'fedoralink_ui',
     'baseOArepo',
     'dcterms',
     'bootstrap_pagination',
     'bootstrap3',
-    'changeRDFtype',
-    'createTypes',
-    'romiste',
-    'fedoralink.common_namespaces.web_acl',
-    'state_engine',
-    'administration'
+    # 'changeRDFtype',
+    # 'createTypes',
+    # 'romiste',
+    # 'fedoralink.common_namespaces.web_acl',
+    # 'state_engine',
+    'administration',
+    # 'data_types'
 ]
 
 MIDDLEWARE_CLASSES = [
