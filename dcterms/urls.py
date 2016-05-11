@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from fedoralink.common_namespaces.dc import DCObject
 from fedoralink.models import FedoraObject
 
+# TODO: zbavit sa model = DCObject, pridat template pre detail collection (search)
 urlpatterns = [
     url(r'^$', fedoralink_ui.views.GenericIndexView.as_view(app_name='dcterms'), name="index"),
     #    breadcrumb=_('dcterms:index')),
@@ -59,6 +60,9 @@ urlpatterns = [
 
     url('^(?P<pk>[^/]+)$',
         fedoralink_ui.views.GenericDetailView.as_view(), name="detail"),
+
+    url('^collection_detail(?P<parameters>.*)$',
+        fedoralink_ui.views.GenericCollectionDetailView.as_view(), name="collectionDetail"),
 ]
 
 urlpatterns = [

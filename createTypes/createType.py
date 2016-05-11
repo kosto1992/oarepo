@@ -21,11 +21,10 @@ class createType:
         model = Template
         parent = FedoraObject.objects.get(pk=pk)
         templateObject = parent.create_child(type, flavour=model)
-        templateObject.save()
         templateObject.label = type+'Template'
         stream = TypedStream(file, filename='romiste_scientists_'+type+'.html')
 
-        templateObject.set_template_bitstream(stream)
+        templateObject.set_local_bitstream(stream)
 
         templateObject.save()
         return templateObject
@@ -39,13 +38,13 @@ class createType:
 
         typeObject.label = 'TestType'
         typeObject.controller = 'Controller'
-        typeObject.rdf_types = [DC.Object]
-        template = self.createTemplate(pk=typeObject.id, type='view', file='./detail.html')
-        typeObject.templates_view = template.id
+        typeObject.rdf_types = ["http://cesnet.cz/ns/repository#DCTermsCollection"]
+        template = self.createTemplate(pk=typeObject.id, type='view', file='./collection_detail.html')
+        typeObject.template_view = template
         typeObject.save()
 
         template = self.createTemplate(pk=typeObject.id, type='edit', file='./edit.html')
-        typeObject.templates_edit = template.id
+        typeObject.template_edit = template
         typeObject.save()
 
         print(typeObject.pk)

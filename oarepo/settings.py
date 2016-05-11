@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     # 'changeRDFtype',
     # 'createTypes',
-    # 'romiste',
+    'romiste',
     # 'fedoralink.common_namespaces.web_acl',
     # 'state_engine',
     'administration',
@@ -81,6 +81,12 @@ LOGGING = {
             'propagate': True,
         },
     },
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
 }
 
 LANGUAGES = (
