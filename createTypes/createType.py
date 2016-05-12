@@ -54,9 +54,12 @@ class createType:
     def createResourceFieldType(self):
         model = ResourceFieldType
         parent = FedoraObject.objects.get(pk='type')
-        typeObject = parent.create_child('edit', flavour=model)
+        typeObject = parent.create_child('view', flavour=model)
         typeObject.label = "ResourceFieldType"
-        typeObject.field_name = "title"
+        typeObject.field_fedoralink_type = "fedoralink.indexer.fields.IndexedLanguageField"
+        typeObject.field_name = 'title'
+
+        typeObject.resource_type = FedoraObject.objects.get(pk='type/95/36/d6/8f/9536d68f-9b6d-43d0-9a07-7764aca2f009')
 
         typeObject.save()
 
