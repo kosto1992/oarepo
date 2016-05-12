@@ -68,5 +68,5 @@ urlpatterns = [
 urlpatterns = [
     url(r'^', include(patterns('',
                                *urlpatterns
-                               ), namespace='dcterms'))
+                               ), namespace='dcterms', app_name='dcterms'))
 ]
