@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load bootstrap3 %}
 {% load staticfiles %}
+{% load urlbreadcrumbs_tags %}
 
 {% block head %}
     <meta charset="utf-8"/>
@@ -69,7 +70,8 @@
                         {% endwith %}
                         <li><a href="{% url "oarepo:index" %}"><span class="menu-item">{% trans "Repositories" %}</span></a>
                         </li>
-                        <li><a href="{% url "oarepo_administration:index" %}"><span class="menu-item">{% trans "Administration" %}</span></a>
+                        <li><a href="{% url "oarepo_administration:index" %}"><span
+                                class="menu-item">{% trans "Administration" %}</span></a>
                         </li>
                         <li><a href="#"><span class="menu-item">{% trans "Log in" %}</span></a></li>
                     {% endblock %}
@@ -79,6 +81,9 @@
             </div><!-- /.navbar-collapse -->
         </div>
     </nav>
+    {% block rendered_breadcrumbs %}
+        {% render_breadcrumbs "urlbreadcrumbs/twitter-bootstrap.html" %}
+    {% endblock %}
 {% endblock %}
 
 <div style="clear: both"></div>
@@ -87,7 +92,7 @@
 
     <div class="col-md-3 cesnet-left-block">
         <img src="{% static "baseOArepo/images/logoCesnet.png" %}" id="logoCesnet"/>
-        {% block left_block %}
+        {% block toolbox %}
         {% endblock %}
     </div>
     <div class="col-md-9 cesnet-content">
@@ -97,7 +102,7 @@
             </div>
 
             <div class="row">
-                {% block inner_content %}{% endblock %}
+                {% block inner_content %}{% block repository_content %}{% endblock %}{% endblock %}
             </div>
         {% endblock %}
     </div>
@@ -107,9 +112,9 @@
 <div style="clear: both"></div>
 
 <div class="content">
-{% block widecontent %}
+    {% block widecontent %}
 
-{% endblock %}
+    {% endblock %}
 </div>
 
 {% block footer %}

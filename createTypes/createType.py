@@ -13,7 +13,7 @@ for handler in logging.root.handlers[:]:
 logging.basicConfig(level=logging.INFO)
 
 from fedoralink.models import FedoraObject
-from fedoralink_ui.models import ResourceType, Template, ResourceFieldType
+from fedoralink_ui.models import ResourceType, Template, ResourceFieldType, ResourceCollectionType
 
 
 class createType:
@@ -29,19 +29,47 @@ class createType:
         templateObject.save()
         return templateObject
 
-    def createType(self):
-        model = ResourceType
+    def createResourceCollectionType(self):
+        model = ResourceCollectionType
         parent = FedoraObject.objects.get(pk='type')
-        typeObject = parent.create_child('edit', flavour=model)
+        typeObject = parent.create_child('collection_view', flavour=model)
         typeObject.save()
         #typeObject = FedoraObject.objects.get(pk='type/64/94/59/35/64945935-9644-4d4e-a8da-bde34891e9b1')
 
-        typeObject.label = 'TestType'
+        typeObject.label = 'TestCollectionType'
         typeObject.controller = 'Controller'
         typeObject.rdf_types = ["http://cesnet.cz/ns/repository#DCTermsCollection"]
         template = self.createTemplate(pk=typeObject.id, type='view', file='./collection_detail.html')
         typeObject.template_view = template
+        # typeObject.primary_child_type = "http://cesnet.cz/ns/repository#DCTerms"
+
+        resource_type = FedoraObject.objects.get(pk='type/95/36/d6/8f/9536d68f-9b6d-43d0-9a07-7764aca2f009')
+        typeObject.primary_subcollection_type = resource_type
         typeObject.save()
+
+        template = self.createTemplate(pk=typeObject.id, type='edit', file='./edit.html')
+        typeObject.template_edit = template
+        typeObject.save()
+
+        print(typeObject.pk)
+
+        print('Object %s should be saved', typeObject.label)
+
+    def createResourceType(self):
+        model = ResourceType
+        parent = FedoraObject.objects.get(pk='type')
+        typeObject = parent.create_child('resource_type', flavour=model)
+        typeObject.save()
+        # typeObject = FedoraObject.objects.get(pk='type/64/94/59/35/64945935-9644-4d4e-a8da-bde34891e9b1')
+
+        typeObject.label = 'TestResourceType'
+        typeObject.controller = 'Controller'
+        typeObject.rdf_types = ["http://cesnet.cz/ns/repository#DCTermsCollection"]
+        template = self.createTemplate(pk=typeObject.id, type='view', file='./collection_detail.html')
+        typeObject.template_view = template
+        # typeObject.primary_child_type = "http://cesnet.cz/ns/repository#DCTerms"
+
+        typeObject.fedoralink_model =
 
         template = self.createTemplate(pk=typeObject.id, type='edit', file='./edit.html')
         typeObject.template_edit = template
@@ -69,5 +97,5 @@ class createType:
 
 
 create = createType()
-# create.createType()
-create.createResourceFieldType()
+create.createType()
+#create.createResourceFieldType()

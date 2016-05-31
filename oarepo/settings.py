@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     # 'fedoralink.common_namespaces.web_acl',
     # 'state_engine',
     'administration',
-    # 'data_types'
+    # 'data_types',
+    'urlbreadcrumbs'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -83,18 +84,18 @@ LOGGING = {
     },
 }
 
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-#     }
-# }
-
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'unique-snowflake',
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
     }
 }
+
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#         'LOCATION': 'unique-snowflake',
+#     }
+# }
 
 LANGUAGES = (
     ('cs', _('Čeština')),
@@ -185,3 +186,6 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
+
+URLBREADCRUMBS_RESOLVER = 'urlbreadcrumbs.BreadRegexURLResolver'
+

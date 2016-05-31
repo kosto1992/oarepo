@@ -15,13 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url, include, patterns
 from django.contrib import admin
+from urlbreadcrumbs import url as burl
+from django.utils.translation import ugettext_lazy as _
 import baseOArepo.views
 
 import dcterms.urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^dcterms/', include("dcterms.urls")),
+    burl(r'^dcterms/', include("dcterms.urls"), verbose_name=_('DCterms')),
     # url(r'^romiste/', include("romiste.urls")),
     url(r'^administration/', include("administration.urls")),
     # url(r'^states/', include("state_engine.urls")),
