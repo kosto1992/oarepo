@@ -20,14 +20,17 @@ from django.utils.translation import ugettext_lazy as _
 import baseOArepo.views
 
 import dcterms.urls
+from baseOArepo.generic_urls import repository_patterns
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    burl(r'^dcterms/', include("dcterms.urls"), verbose_name=_('DCterms')),
-    # url(r'^romiste/', include("romiste.urls")),
     url(r'^administration/', include("administration.urls")),
-    # url(r'^states/', include("state_engine.urls")),
-    # url(r'^types/', include("data_types.urls")),
-    url(r'^', include(patterns('',
-                               url('^$', baseOArepo.views.index, name="index")), namespace='oarepo'))
+    burl(r'^', include("baseOArepo.generic_urls"))
+    # burl(r'^dcterms/', include("dcterms.urls"), verbose_name=_('DCterms')),
+    # url(r'^romiste/', include("romiste.urls")),
+    # # url(r'^states/', include("state_engi.ne.urls")),
+    # url(r'^types/', include("types_engine.urls")),
+    # # url(r'^types/', include("data_types.urls")),
+    # url(r'^', include(patterns('',
+    #                            url('^$', baseOArepo.views.index, name="index")), namespace='oarepo'))
 ]

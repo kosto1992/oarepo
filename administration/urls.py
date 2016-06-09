@@ -5,5 +5,5 @@ import administration.views
 urlpatterns = [
     url(r'^', include(patterns('',
                                url('^$', administration.views.index, name="index")),
-                      namespace='oarepo_administration'))
+                      namespace='oarepo_administration', app_name='administration'))
 ]
