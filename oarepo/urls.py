@@ -20,12 +20,11 @@ from django.utils.translation import ugettext_lazy as _
 import baseOArepo.views
 
 import dcterms.urls
-from baseOArepo.generic_urls import repository_patterns
+from fedoralink_ui.generic_urls import repository_patterns
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^administration/', include("administration.urls")),
-    burl(r'^', include("baseOArepo.generic_urls"))
+    # url(r'^administration/', include("administration.urls")),
     # burl(r'^dcterms/', include("dcterms.urls"), verbose_name=_('DCterms')),
     # url(r'^romiste/', include("romiste.urls")),
     # # url(r'^states/', include("state_engi.ne.urls")),
@@ -34,3 +33,4 @@ urlpatterns = [
     # url(r'^', include(patterns('',
     #                            url('^$', baseOArepo.views.index, name="index")), namespace='oarepo'))
 ]
+urlpatterns += repository_patterns(app_name="oarepo")

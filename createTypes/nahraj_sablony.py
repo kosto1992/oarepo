@@ -3,7 +3,7 @@ import re
 
 from rdflib.namespace import DC
 
-from fedoralink.fedorans import CIS, CESNET
+from fedoralink.fedorans import CIS, CESNET, CESNET_TYPE
 from fedoralink.models import FedoraObject
 from fedoralink.utils import TypedStream
 from fedoralink_ui.models import ResourceType, Template, ResourceCollectionType
@@ -33,7 +33,7 @@ def vytvor_nebo_aktualizuj_sablonu(resource_type, objekt_sablony, typ_sablony, f
 
 
 def importuj_typ(typ, nastaveni):
-    parent = FedoraObject.objects.get(pk='type')
+    parent = FedoraObject.objects.get(pk='administration/types')
     for c in parent.children:
         print(typ, c.rdf_types, type(c.rdf_types), typ in c.rdf_types)
         if typ in c.rdf_types:
@@ -61,7 +61,7 @@ def importuj_typ(typ, nastaveni):
 
 
 def importuj_kolekci(typ, nastaveni):
-    parent = FedoraObject.objects.get(pk='type')
+    parent = FedoraObject.objects.get(pk='administration/types')
     for c in parent.children:
         if not isinstance(c, ResourceCollectionType):
             continue
@@ -141,5 +141,9 @@ importuj(
             'primary_subcollection_type': CESNET.DCTermsCollection,
             'view' : 'collection_detail.html',
             'fedoralink_model' : 'fedoralink_ui.models.DCTermsCollection'
+        },
+        CESNET_TYPE.AdministrationCollection: {
+            'view' : 'administration_collection_detail.html',
+            'fedoralink_model' : 'fedoralink_ui.models.AdministrationCollection'
         }
     })

@@ -31,7 +31,7 @@ class createType:
 
     def createResourceCollectionType(self):
         model = ResourceCollectionType
-        parent = FedoraObject.objects.get(pk='type')
+        parent = FedoraObject.objects.get(pk='administration/types')
         typeObject = parent.create_child('collection_view', flavour=model)
         typeObject.save()
         #typeObject = FedoraObject.objects.get(pk='type/64/94/59/35/64945935-9644-4d4e-a8da-bde34891e9b1')

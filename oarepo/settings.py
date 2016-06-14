@@ -49,8 +49,8 @@ INSTALLED_APPS = [
     'romiste',
     # 'fedoralink.common_namespaces.web_acl',
     # 'state_engine',
-    'types_engine',
-    'administration',
+    # 'types_engine',
+    # 'administration',
     'data_types',
     'urlbreadcrumbs'
 ]
