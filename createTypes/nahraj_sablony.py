@@ -114,6 +114,10 @@ importuj(
             'edit' : 'edit.html',
             'fedoralink_model' : 'fedoralink.common_namespaces.dc.DCObject'
         },
+        CESNET_TYPE.ResourceTypeCollection: {
+            'template_list_item' : 'administration_search_result_row.html',
+            'fedoralink_model' : 'fedoralink_ui.models.ResourceTypeCollection'
+        }
         # CIS.AccreditationDocument: {
         #     'view'      : 'templates_to_upload/accreditation_documents/view.html',
         #     'list_item' : 'templates_to_upload/accreditation_documents/list_item.html',

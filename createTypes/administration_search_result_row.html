@@ -1,0 +1,16 @@
+{% load i18n %}
+{% load l10n %}
+{% load fedoralink_tags %}
+
+<div class="repository pull-left col-xs-12 col-sm-6 col-md-3">
+    <div class="repository-list-item pull-left">
+        <div class="repository-header repository-header-disabled"><h4>{{ item.title }}</h4></div>
+        <div class="repository-detail-small text-muted">
+
+            <a href="{% url appname|add:':detail' id=item.id|id_from_path:fedora_prefix %}"
+               class="btn btn-default btn-disabled">
+                {% trans 'Show' %}
+            </a>
+        </div>
+    </div>
+</div>
