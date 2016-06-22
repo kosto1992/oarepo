@@ -69,8 +69,6 @@ class createType:
         typeObject.template_view = template
         # typeObject.primary_child_type = "http://cesnet.cz/ns/repository#DCTerms"
 
-        typeObject.fedoralink_model =
-
         template = self.createTemplate(pk=typeObject.id, type='edit', file='./edit.html')
         typeObject.template_edit = template
         typeObject.save()
@@ -96,6 +94,6 @@ class createType:
         typeObject.save()
 
 
-create = createType()
-create.createType()
+# create = createType()
+# create.createType()
 #create.createResourceFieldType()
