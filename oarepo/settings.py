@@ -147,6 +147,7 @@ else:
     DATABASES['repository'] = {
         'ENGINE'          : 'fedoralink.engine',
         'SEARCH_ENGINE'   : 'fedoralink.indexer.elastic.ElasticIndexer',
+        #'REPO_URL'        :  '127.0.0.1:8090/fcrepo-webapp-plus-webac-audit-4.5.1/rest/',
         'REPO_URL'        : 'http://127.0.0.1:8080/fcrepo/rest',
         'SEARCH_URL'      : 'http://127.0.0.1:9200/oarepo',
         'USE_INTERNAL_INDEXER' : True
