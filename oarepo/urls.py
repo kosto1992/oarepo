@@ -24,6 +24,7 @@ from fedoralink_ui.generic_urls import repository_patterns
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url('^', include('django.contrib.auth.urls')),
     # url(r'^administration/', include("administration.urls")),
     # burl(r'^dcterms/', include("dcterms.urls"), verbose_name=_('DCterms')),
     # url(r'^romiste/', include("romiste.urls")),

@@ -64,16 +64,25 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     {% block menu %}
-                        {% with index_path=appname|add:":index" %}
-                            <li><a href="{% url index_path %}"><span class="menu-item">{% trans "Home" %}</span></a>
-                            </li>
-                        {% endwith %}
+                        {%  if appname %}
+                            {% with index_path=appname|add:":index" %}
+                                <li><a href="{% url index_path %}"><span class="menu-item">{% trans "Home" %}</span></a>
+                                </li>
+                            {% endwith %}
+                        {%  else %}
+                            <li><a href="/"><span class="menu-item">{% trans "Home" %}</span></a>
+                                </li>
+                        {%  endif %}
                         <li><a href="{% url "oarepo:index" %}"><span class="menu-item">{% trans "Repositories" %}</span></a>
                         </li>
                         <li><a href="/administration/"><span
                                 class="menu-item">{% trans "Administration" %}</span></a>
                         </li>
-                        <li><a href="#"><span class="menu-item">{% trans "Log in" %}</span></a></li>
+                        {% if user.is_authenticated %}
+                            <li><a href="{% url "logout" %}"><span class="menu-item">{{ user }}</span></a></li>
+                        {%  else %}
+                            <li><a href="{% url "login" %}"><span class="menu-item">{% trans "Log in" %}</span></a></li>
+                        {%  endif %}
                     {% endblock %}
                 </ul>
 

@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -52,7 +51,8 @@ INSTALLED_APPS = [
     # 'types_engine',
     # 'administration',
     'data_types',
-    'urlbreadcrumbs'
+    'urlbreadcrumbs',
+    'django.contrib.admin'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -85,11 +85,11 @@ LOGGING = {
     },
 }
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-    }
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+#     }
+# }
 
 # CACHES = {
 #     'default': {
@@ -150,26 +150,27 @@ else:
         #'REPO_URL'        :  '127.0.0.1:8090/fcrepo-webapp-plus-webac-audit-4.5.1/rest/',
         'REPO_URL'        : 'http://127.0.0.1:8080/fcrepo/rest',
         'SEARCH_URL'      : 'http://127.0.0.1:9200/oarepo',
-        'USE_INTERNAL_INDEXER' : True
+        'USE_INTERNAL_INDEXER' : True,
+        'USERNAME'        : 'guest',
+        'PASSWORD'        : 'guest'
     }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    # },
 ]
 
 
@@ -191,3 +192,5 @@ STATIC_URL = '/static/'
 
 URLBREADCRUMBS_RESOLVER = 'urlbreadcrumbs.BreadRegexURLResolver'
 
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'

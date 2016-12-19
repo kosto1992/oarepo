@@ -3,6 +3,8 @@ import re
 
 from rdflib.namespace import DC
 
+from fedoralink.authentication.Credentials import Credentials
+from fedoralink.authentication.as_user import as_user
 from fedoralink.fedorans import CIS, CESNET, CESNET_TYPE
 from fedoralink.models import FedoraObject
 from fedoralink.utils import TypedStream
@@ -107,47 +109,65 @@ def importuj(sablony, kolekce):
         importuj_kolekci(typ, nastaveni)
 
 # vytvor_adresare()
-importuj(
-    {
-        DC.Object: {
-            'view' : 'detail.html',
-            'edit' : 'edit.html',
-            'fedoralink_model' : 'fedoralink.common_namespaces.dc.DCObject'
+import configparser
+config = configparser.ConfigParser()
+config.read('../oarepo/admin_auth.cfg')
+
+credentials = Credentials(config['oarepo']['admin'],config['oarepo']['admin_pw'])
+print("user:" + credentials.username)
+with as_user(credentials):
+    importuj(
+        {
+            DC.Object: {
+                'view' : 'detail.html',
+                'edit' : 'edit.html',
+                'fedoralink_model' : 'fedoralink.common_namespaces.dc.DCObject'
+            },
+            CESNET.DCObjectWithAttachment: {
+                'view' : 'detail.html',
+                'edit' : 'edit.html',
+                'fedoralink_model' : 'baseOArepo.models.DCObjectWithAttachment'
+            },
+            CESNET_TYPE.ResourceTypeCollection: {
+                'list_item' : 'administration_search_result_row.html',
+                'fedoralink_model' : 'fedoralink_ui.models.ResourceTypeCollection'
+            }
+            # CIS.AccreditationDocument: {
+            #     'view'      : 'templates_to_upload/accreditation_documents/view.html',
+            #     'list_item' : 'templates_to_upload/accreditation_documents/list_item.html',
+            #     'fedoralink_model': 'akreditacni_dokumenty.models.AccreditationDocument'
+            # },
+            # CIS.QualificationWorkTypeCollection: {
+            #     'view'      : 'templates_to_upload/theses/druh.html',
+            # },
+            # CIS.QualificationWorkFacultyCollection: {
+            #     'view': 'templates_to_upload/theses/fakulta.html',
+            # },
+            # CIS.QualificationWorkYearCollection: {
+            #     'view': 'templates_to_upload/theses/rok.html',
+            # },
+            # CIS.QualificationWorkFieldCollection: {
+            #     'view': 'templates_to_upload/theses/obor.html',
+            # },
+            # CIS.QualificationWork: {
+            #     'view': 'templates_to_upload/theses/detail.html',
+            # }
         },
-        CESNET_TYPE.ResourceTypeCollection: {
-            'list_item' : 'administration_search_result_row.html',
-            'fedoralink_model' : 'fedoralink_ui.models.ResourceTypeCollection'
-        }
-        # CIS.AccreditationDocument: {
-        #     'view'      : 'templates_to_upload/accreditation_documents/view.html',
-        #     'list_item' : 'templates_to_upload/accreditation_documents/list_item.html',
-        #     'fedoralink_model': 'akreditacni_dokumenty.models.AccreditationDocument'
-        # },
-        # CIS.QualificationWorkTypeCollection: {
-        #     'view'      : 'templates_to_upload/theses/druh.html',
-        # },
-        # CIS.QualificationWorkFacultyCollection: {
-        #     'view': 'templates_to_upload/theses/fakulta.html',
-        # },
-        # CIS.QualificationWorkYearCollection: {
-        #     'view': 'templates_to_upload/theses/rok.html',
-        # },
-        # CIS.QualificationWorkFieldCollection: {
-        #     'view': 'templates_to_upload/theses/obor.html',
-        # },
-        # CIS.QualificationWork: {
-        #     'view': 'templates_to_upload/theses/detail.html',
-        # }
-    },
-    {
-        CESNET.DCTermsCollection: {
-            'primary_child_type': DC.Object,
-            'primary_subcollection_type': CESNET.DCTermsCollection,
-            'view' : 'collection_detail.html',
-            'fedoralink_model' : 'fedoralink_ui.models.DCTermsCollection'
-        },
-        CESNET_TYPE.AdministrationCollection: {
-            'view' : 'administration_collection_detail.html',
-            'fedoralink_model' : 'fedoralink_ui.models.AdministrationCollection'
-        }
-    })
+        {
+            CESNET.DCTermsCollection: {
+                'primary_child_type': DC.Object,
+                'primary_subcollection_type': CESNET.DCTermsCollection,
+                'view' : 'collection_detail.html',
+                'fedoralink_model' : 'fedoralink_ui.models.DCTermsCollection'
+            },
+            CESNET.AttachmentsCollection: {
+                'primary_child_type': CESNET.DCObjectWithAttachment,
+                'primary_subcollection_type': CESNET.AttachmentsCollection,
+                'view' : 'collection_detail.html',
+                'fedoralink_model' : 'baseOArepo.models.AttachmentsCollection'
+            },
+            CESNET_TYPE.AdministrationCollection: {
+                'view' : 'administration_collection_detail.html',
+                'fedoralink_model' : 'fedoralink_ui.models.AdministrationCollection'
+            }
+        })

@@ -1,3 +1,4 @@
+from baseOArepo.models import AttachmentsCollection
 from fedoralink.authentication.Credentials import Credentials
 from fedoralink.authentication.as_user import as_user
 from fedoralink.models import FedoraObject
@@ -16,6 +17,7 @@ config.read('../oarepo/admin_auth.cfg')
 credentials = Credentials(config['oarepo']['admin'],config['oarepo']['admin_pw'])
 print("user:" + credentials.username)
 with as_user(credentials):
-    createCollection(name="administration", model=AdministrationCollection, slug="administration")
-    createCollection(name="types", model=ResourceTypeCollection, slug="types", pk='administration')
-    createCollection(name="dcterms", model=DCTermsCollection, slug="dcterms")
+    # createCollection(name="administration", model=AdministrationCollection, slug="administration")
+    # createCollection(name="types", model=ResourceTypeCollection, slug="types", pk='administration')
+    # createCollection(name="dcterms", model=DCTermsCollection, slug="dcterms")
+    createCollection(name="dcobjects with attachments", model=AttachmentsCollection, slug="attachments")

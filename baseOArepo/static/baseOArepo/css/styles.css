@@ -159,6 +159,14 @@ img#logoCesnet {
     padding: 0 !important;
 }
 
+div.cesnet-left-block .row .input-group .input-group-btn button {
+    margin-top: 0;
+}
+
+div.space-below {
+    margin-bottom: 20px;
+}
+
 .content > div > .panel > form > .search {
     background: #b6265f url("../images/search-13-64.ico") no-repeat !important;
 
@@ -282,7 +290,7 @@ div.cesnet-left-block .btn-default img {
 }
 
 .cesnet-content {
-    min-height: 600px !important;
+    min-height: 560px !important;
 
 }
 
