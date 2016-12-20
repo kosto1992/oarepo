@@ -85,11 +85,11 @@ LOGGING = {
     },
 }
 
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-#     }
-# }
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
 
 # CACHES = {
 #     'default': {
@@ -194,3 +194,5 @@ URLBREADCRUMBS_RESOLVER = 'urlbreadcrumbs.BreadRegexURLResolver'
 
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
+
+USERS_TOMCAT_PASSWORD = 'user1pw'
