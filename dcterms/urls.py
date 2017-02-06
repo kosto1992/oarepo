@@ -1,5 +1,5 @@
-from django.conf.urls import url, include, patterns
-
+from django.conf import settings
+from django.conf.urls import url, include
 import fedoralink_ui.views
 from urlbreadcrumbs import url as burl
 from django.utils.translation import ugettext_lazy as _
@@ -52,7 +52,9 @@ urlpatterns = [
 ]
 
 urlpatterns = [
-    burl(r'^', include(patterns('',
-                               *urlpatterns
-                               ), namespace='dcterms', app_name='dcterms'))
+    burl(r'^', include(urlpatterns, namespace='dcterms', app_name='dcterms'))
 ]
+
+if settings.USE_BREADCRUMBS:
+    import autobreadcrumbs.discover
+    autobreadcrumbs.discover.autodiscover()

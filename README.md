@@ -2,7 +2,7 @@
 OARepo dcterms
 
 nastavenie virtualenv:
-* Django 1.8
+* Django 1.9
 * pip
 * fedoralink (pip install -e /path/to/local/fedoralink/directory)
 * bleach
@@ -19,6 +19,15 @@ nastavenie virtualenv:
 * six
 * wheel
 
-Vacsina by sa mala doinstalovat automaticky ako zavislosti.
-
 Instalacia fedoralinku v aktivnom virtenv.
+
+Settings.py:
+Nastavenie ALLOWED_HOSTS
+    DATABASES (postgresql)
+    STATIC_ROOT = '/apache/static'
+
+Nastavit pristupove udaje v oarepo/admin_auth.cfg (FEDORA_ADMIN pristup)
+
+Spustit manage.py migrate (nastavenie DB)
+manage.py collect_static
+

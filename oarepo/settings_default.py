@@ -1,3 +1,5 @@
+#Rename this to settings.py or create new one.
+
 """
 Django settings for oarepo project.
 
@@ -24,13 +26,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ct79($rugpit$d+d_t@b$m2t2(4bq)9bk^8^qv!ug%px8-^uxe'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
+#Fill allowed hosts e.g. mydomain.com
 ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,17 +45,10 @@ INSTALLED_APPS = [
     'dcterms',
     'bootstrap_pagination',
     'bootstrap3',
-    # 'changeRDFtype',
-    # 'createTypes',
     'romiste',
-    # 'fedoralink.common_namespaces.web_acl',
-    # 'state_engine',
-    # 'types_engine',
-    # 'administration',
     'data_types',
-    #'urlbreadcrumbs',
-    'django.contrib.admin',
-    'autobreadcrumbs'
+    'urlbreadcrumbs',
+    'django.contrib.admin'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -65,26 +60,6 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-
-MIDDLEWARE_CLASSES += [
-'fedoralink.middleware.FedoraUserDelegationMiddleware'
-]
-
-CONTEXT_PROCESSORS = [
-'django.template.context_processors.debug',
-'django.template.context_processors.request',
-'django.contrib.auth.context_processors.auth',
-'django.contrib.messages.context_processors.messages',
-'django.template.context_processors.i18n',
-'django.template.context_processors.media',
-'django.template.context_processors.static',
-'django.template.context_processors.tz',
-]
-
-
-CONTEXT_PROCESSORS += [
-'oarepo.context_processors.AutoBreadcrumbsContext'
 ]
 
 LOGGING = {
@@ -132,7 +107,12 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
-            'context_processors': CONTEXT_PROCESSORS,
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
         },
     },
 ]
@@ -150,6 +130,7 @@ DATABASES = {
     }
 }
 
+
 import socket
 if '997-a315-05' in socket.gethostname():
     DATABASES['repository'] = {
@@ -161,14 +142,14 @@ if '997-a315-05' in socket.gethostname():
     }
 else:
     DATABASES['repository'] = {
+        #Edit URLs and login informations.
         'ENGINE'          : 'fedoralink.engine',
         'SEARCH_ENGINE'   : 'fedoralink.indexer.elastic.ElasticIndexer',
-        #'REPO_URL'        :  '127.0.0.1:8090/fcrepo-webapp-plus-webac-audit-4.5.1/rest/',
         'REPO_URL'        : 'http://127.0.0.1:8080/fcrepo/rest',
         'SEARCH_URL'      : 'http://127.0.0.1:9200/oarepo',
         'USE_INTERNAL_INDEXER' : True,
-        'USERNAME'        : 'guest',#'cis_repo',
-        'PASSWORD'        : 'guest'#'5SKJ4KW6NyxdSNwtxC8uoE9VAPVKJ37qLQ3DTJR6Wvz6rHSh'
+        'USERNAME'        : 'guest',
+        'PASSWORD'        : 'guest'
     }
 
 # Password validation
@@ -203,12 +184,15 @@ USE_L10N = True
 
 USE_TZ = True
 
+#Path to static directory in apache
+STATIC_ROOT = '/srv/OARepo/apache/static'
 
 STATIC_URL = '/static/'
 
-USE_BREADCRUMBS=True
+URLBREADCRUMBS_RESOLVER = 'urlbreadcrumbs.BreadRegexURLResolver'
 
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 
+#PAssowrd for all users in Fedora
 USERS_TOMCAT_PASSWORD = 'user1pw'
