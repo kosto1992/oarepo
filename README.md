@@ -1,8 +1,39 @@
-# oarepo readme
-OARepo dcterms
+OARepo
+==============
 
-nastavenie virtualenv:
-* Django 1.9
+
+
+Installation
+--------------------
+
+1. Create fcrepo.war with build in fedora_group_plugin and cesnet.fcrepo-http-api-with-states (this has to replace original fcrepo-http-api in fcrepo.war)
+
+2. Modify `WEB-INF/classes/spring/auth-repo.xml`, and add/change the following:
+
+        <bean name="djangoGroupPrincipalProvider" 
+              class="cz.cesnet.fcrepo.auth.django.DjangoGroupPrincipalProvider"/>
+
+        <util:set id="principalProviderSet">
+          <ref bean="djangoGroupPrincipalProvider"/>
+          <ref bean="delegatedPrincipalProvider"/>
+        </util:set>
+
+3. Modify `fcrepo/WEB-INF/classes/config/jdbc-postgresql` and add/change the following:
+
+    "security" : {
+       "anonymous" : {
+           "roles" : ["readonly","readwrite","admin"],
+           "useOnFailedLogin" : false
+       },
+       "providers" : [
+           { "classname" : "org.fcrepo.auth.common.ServletContainerAuthenticationProvider" }
+       ]
+   },
+
+4. Install oarepo and fedoralink and requirements into active virtualenv
+
+virtualenv:
+* Django 1.10
 * pip
 * fedoralink (pip install -e /path/to/local/fedoralink/directory)
 * bleach
@@ -19,15 +50,23 @@ nastavenie virtualenv:
 * six
 * wheel
 
-Instalacia fedoralinku v aktivnom virtenv.
+Edit Settings.py in oarepo:
+		Set ALLOWED_HOSTS
+    		DATABASES (postgresql)
+				Set FedoraAdmin username and password
+    		STATIC_ROOT = '/apache/static'
 
-Settings.py:
-Nastavenie ALLOWED_HOSTS
-    DATABASES (postgresql)
-    STATIC_ROOT = '/apache/static'
 
-Nastavit pristupove udaje v oarepo/admin_auth.cfg (FEDORA_ADMIN pristup)
+5. Set fedoraAdmin user account in /etc/tomcat/tomcat-users.xml
 
-Spustit manage.py migrate (nastavenie DB)
-manage.py collect_static
+6. Run `manage.py migrate` (sets up Database)
+
+7. Run `manage.py collect_static` (copies static files - css, js into STATIC_ROOT directory)
+
+8. Run from oarepo `python createTypes/createCollection.py`
+
+9. Run from oarepo `python createTypes/nahraj_sablony.py`
+
+10. Create ACLs
+
 

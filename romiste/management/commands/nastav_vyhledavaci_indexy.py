@@ -22,20 +22,20 @@ def fullname(o):
 
 # 1. remove everything from index
 
-import configparser
-config = configparser.ConfigParser()
-config.read('../oarepo/admin_auth.cfg')
+# import configparser
+# config = configparser.ConfigParser()
+# config.read('oarepo/admin_auth.cfg')
+#
+# credentials = Credentials(config['oarepo']['admin'],config['oarepo']['admin_pw'])
+# print("user:" + credentials.username)
+# with as_user(credentials):
+requests.delete(settings.DATABASES['repository']['SEARCH_URL'])
 
-credentials = Credentials(config['oarepo']['admin'],config['oarepo']['admin_pw'])
-print("user:" + credentials.username)
-with as_user(credentials):
-    requests.delete(settings.DATABASES['repository']['SEARCH_URL'])
-
-    # 2. install schemas
-    for model in FedoraTypeManager.models:
-        if issubclass(model, IndexableFedoraObject):
-            model_name = fullname(model)
-            call_command('config_repository_index_elasticsearch', model_name)
+# 2. install schemas
+for model in FedoraTypeManager.models:
+    if issubclass(model, IndexableFedoraObject):
+        model_name = fullname(model)
+        call_command('config_repository_index_elasticsearch', model_name)
 
 
 # 3. reindex all documents in the repository ...
@@ -51,9 +51,8 @@ def iterate_all_documents(root):
         for it in iterate_all_documents(c):
             yield it
 
-with as_user(credentials):
-    indexer = connections['repository'].indexer
-    for doc in iterate_all_documents(''):
-        indexer.reindex(doc)
+indexer = connections['repository'].indexer
+for doc in iterate_all_documents(''):
+    indexer.reindex(doc)
 
 
