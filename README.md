@@ -20,42 +20,41 @@ Installation
 
 3. Modify `fcrepo/WEB-INF/classes/config/jdbc-postgresql` and add/change the following:
 
-    "security" : {
-       "anonymous" : {
-           "roles" : ["readonly","readwrite","admin"],
-           "useOnFailedLogin" : false
-       },
-       "providers" : [
-           { "classname" : "org.fcrepo.auth.common.ServletContainerAuthenticationProvider" }
-       ]
-   },
+        "security" : {
+           "anonymous" : {
+               "roles" : ["readonly","readwrite","admin"],
+               "useOnFailedLogin" : false
+           },
+           "providers" : [
+               { "classname" : "org.fcrepo.auth.common.ServletContainerAuthenticationProvider" }
+           ]
+        },
 
 4. Install oarepo and fedoralink and requirements into active virtualenv
 
-virtualenv:
-* Django 1.10
-* pip
-* fedoralink (pip install -e /path/to/local/fedoralink/directory)
-* bleach
-* django-bootstrap-pagination
-* django-bootstrap3
-* html5lib
-* inflection
-* isodate
-* pyparsing
-* python-dateutil
-* rdflib
-* requests
-* setuptools
-* six
-* wheel
+    virtualenv should contain:
+     *   Django 1.10
+     *   pip
+     *   fedoralink (pip install -e /path/to/local/fedoralink/directory)
+     *   bleach
+     *   django-bootstrap-pagination
+     *   django-bootstrap3
+     *   html5lib
+     *   inflection
+     *   isodate
+     *   pyparsing
+     *   python-dateutil
+     *   rdflib
+     *   requests
+     *   setuptools
+     *   six
+     *   wheel
 
-Edit Settings.py in oarepo:
-		Set ALLOWED_HOSTS
-    		DATABASES (postgresql)
-				Set FedoraAdmin username and password
-    		STATIC_ROOT = '/apache/static'
-
+    Edit Settings.py in oarepo:
+    		Set ALLOWED_HOSTS
+        		DATABASES (postgresql)
+    				Set FedoraAdmin username and password
+        		STATIC_ROOT = '/apache/static'
 
 5. Set fedoraAdmin user account in /etc/tomcat/tomcat-users.xml
 
