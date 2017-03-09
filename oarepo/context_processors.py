@@ -13,6 +13,8 @@ class RequestPathBreadcrumbResolver(PathBreadcrumbResolver):
         return super().format_title(value)
 
     def resolve(self, path, request=None):
+        if path.startswith("/admin/"):
+            return {'autobreadcrumbs_elements' : []}
         ret = super().resolve(path, request)
         for el in ret['autobreadcrumbs_elements']:
             if callable(el.title):

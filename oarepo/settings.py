@@ -163,12 +163,12 @@ else:
     DATABASES['repository'] = {
         'ENGINE'          : 'fedoralink.engine',
         'SEARCH_ENGINE'   : 'fedoralink.indexer.elastic.ElasticIndexer',
-        'REPO_URL'        :  'http://127.0.0.1:8090/fcrepo-webapp-plus-webac-audit-4.7.1/rest/',
-        #'REPO_URL'        : 'http://127.0.0.1:8080/fcrepo/rest',
+        #'REPO_URL'        :  'http://127.0.0.1:8090/fcrepo-webapp-plus-webac-audit-4.7.1/rest/',
+        'REPO_URL'        : 'http://127.0.0.1:8080/fcrepo/rest',
         'SEARCH_URL'      : 'http://127.0.0.1:9200/oarepo',
         'USE_INTERNAL_INDEXER' : True,
-        'USERNAME'        : 'admin',#'cis_repo',#
-        'PASSWORD'        : 'admin'#'5SKJ4KW6NyxdSNwtxC8uoE9VAPVKJ37qLQ3DTJR6Wvz6rHSh'#
+        'USERNAME'        : 'oarepo',#'admin',#'cis_repo',#
+        'PASSWORD'        : '9R4eKekrWjzEiFwtHsyRdPFnywarwqdtMUeR'#'admin'#'5SKJ4KW6NyxdSNwtxC8uoE9VAPVKJ37qLQ3DTJR6Wvz6rHSh'#
     }
 
 # Password validation

@@ -35,7 +35,7 @@ Installation
     virtualenv should contain:
      *   Django 1.10
      *   pip
-     *   fedoralink (pip install -e /path/to/local/fedoralink/directory)
+     *   fedoralink (`pip install -e /path/to/local/fedoralink/directory`)
      *   bleach
      *   django-bootstrap-pagination
      *   django-bootstrap3
@@ -51,6 +51,7 @@ Installation
      *   wheel
 
     Edit Settings.py in oarepo:
+
     		Set ALLOWED_HOSTS
         		DATABASES (postgresql)
     				Set FedoraAdmin username and password
@@ -67,5 +68,11 @@ Installation
 9. Run from oarepo `python createTypes/nahraj_sablony.py`
 
 10. Create ACLs
+
+11. Run from oarepo `manage.py nastav_vyhledavaci_indexy` (creates indexes in Elasticsearch)
+
+12. Create superuser in Django `manage.py createsuperuser`
+
+13. Create users and groups in Django.
 
 
