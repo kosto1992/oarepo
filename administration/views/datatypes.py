@@ -1,14 +1,16 @@
 from django.views.generic import TemplateView
 
 from fedoralink.type_manager import FedoraTypeManager
-from fedoralink_ui.models import ResourceType, ResourceFieldType
+from fedoralink_ui.models import ResourceType
 
 
 class IndexView(TemplateView):
     template_name = 'oarepo/administration/datatypes/index.html'
 
+    # noinspection PyProtectedMember
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         for model in FedoraTypeManager.models:
             print('model:', model)
             print("    application: ", model._meta.application)
