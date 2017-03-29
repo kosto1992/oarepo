@@ -90,6 +90,7 @@ def importuj_kolekci(typ, nastaveni):
             setattr(collection_type, 'template_' + typ_sablony, template)
 
     if 'primary_child_type' in nastaveni:
+        print('primary type', nastaveni['primary_child_type'])
         collection_type.primary_child_type = \
             ResourceType.objects.get(rdf_types=nastaveni['primary_child_type'])
 

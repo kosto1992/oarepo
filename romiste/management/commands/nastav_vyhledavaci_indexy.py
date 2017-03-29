@@ -14,6 +14,8 @@ from fedoralink.type_manager import FedoraTypeManager
 
 django.setup()
 
+# TODO: prepsat na django command !!!
+
 
 # at first setup elasticsearch data types for indexing
 def fullname(o):
