@@ -65,7 +65,7 @@ Installation
 
 8. Run from oarepo `python createTypes/createCollection.py`
 
-9. Run from oarepo `python createTypes/nahraj_sablony.py`
+9. Run from oarepo `( cd createTypes; python nahraj_sablony.py )`
 
 10. Create ACLs
 

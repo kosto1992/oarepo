@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     # 'fedoralink.common_namespaces.web_acl',
     # 'state_engine',
     # 'types_engine',
-    # 'administration',
+    'administration',
     'data_types',
     #'urlbreadcrumbs',
     'django.contrib.admin',
@@ -151,25 +151,16 @@ DATABASES = {
 }
 
 import socket
-if '997-a315-05' in socket.gethostname():
-    DATABASES['repository'] = {
-        'ENGINE'          : 'fedoralink.engine',
-        'SEARCH_ENGINE'   : 'fedoralink.indexer.elastic.ElasticIndexer',
-        'REPO_URL'        : 'http://127.0.0.1:8080/rest',
-        'SEARCH_URL'      : 'http://127.0.0.1:9200/oarepo',
-        'USE_INTERNAL_INDEXER' : True
-    }
-else:
-    DATABASES['repository'] = {
-        'ENGINE'          : 'fedoralink.engine',
-        'SEARCH_ENGINE'   : 'fedoralink.indexer.elastic.ElasticIndexer',
-        #'REPO_URL'        :  'http://127.0.0.1:8090/fcrepo-webapp-plus-webac-audit-4.7.1/rest/',
-        'REPO_URL'        : 'http://127.0.0.1:8080/fcrepo/rest',
-        'SEARCH_URL'      : 'http://127.0.0.1:9200/oarepo',
-        'USE_INTERNAL_INDEXER' : True,
-        'USERNAME'        : 'oarepo',#'admin',#'cis_repo',#
-        'PASSWORD'        : '9R4eKekrWjzEiFwtHsyRdPFnywarwqdtMUeR'#'admin'#'5SKJ4KW6NyxdSNwtxC8uoE9VAPVKJ37qLQ3DTJR6Wvz6rHSh'#
-    }
+DATABASES['repository'] = {
+    'ENGINE'          : 'fedoralink.engine',
+    'SEARCH_ENGINE'   : 'fedoralink.indexer.elastic.ElasticIndexer',
+    #'REPO_URL'        :  'http://127.0.0.1:8090/fcrepo-webapp-plus-webac-audit-4.7.1/rest/',
+    'REPO_URL'        : 'http://127.0.0.1:8080/fcrepo/rest',
+    'SEARCH_URL'      : 'http://127.0.0.1:9200/oarepo',
+    'USE_INTERNAL_INDEXER' : True,
+    'USERNAME'        : 'oarepo',#'admin',#'cis_repo',#
+    'PASSWORD'        : '9R4eKekrWjzEiFwtHsyRdPFnywarwqdtMUeR'#'admin'#'5SKJ4KW6NyxdSNwtxC8uoE9VAPVKJ37qLQ3DTJR6Wvz6rHSh'#
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
