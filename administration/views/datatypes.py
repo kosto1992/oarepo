@@ -22,6 +22,12 @@ class IndexView(TemplateView):
         for rt in ResourceType.objects.all():
             print("resource type: ", rt.label)
             print("    view template", rt.template_view)
+
+            if rt.template_view:
+                template_bitstream = rt.template_view.get_bitstream()
+                bitstream_data = template_bitstream.stream.read().decode('utf-8')
+                print("        ", template_bitstream, bitstream_data[:60].replace('\n', '\\n'))
+
             print("    edit template", rt.template_edit)
             print("    list item template", rt.template_list_item)
 
